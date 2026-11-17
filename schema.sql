@@ -275,13 +275,62 @@ create table if not exists public.redemptions (
   fulfilled_at timestamptz
 );
 
+-- ---------- Diamanten-Anträge (Bonus, Rückerstattung, Geschenk) ----------
+-- Jemand beantragt Diamanten für sich oder für die andere Person.
+-- Zählen erst, wenn die Person bestätigt, die den Antrag NICHT gestellt hat.
+create table if not exists public.diamond_grants (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references public.players(id) on delete cascade,       -- bekommt die Diamanten
+  requested_by uuid not null references public.players(id) on delete cascade,  -- hat den Antrag gestellt
+  amount int not null check (amount between 1 and 100000),
+  reason text not null check (char_length(reason) between 1 and 120),
+  status text not null default 'pending' check (status in ('pending','approved','rejected')),
+  decided_by uuid references public.players(id) on delete set null,
+  decided_at timestamptz,
+  created_at timestamptz not null default now()
+);
+
 create or replace function public.balance_of(p_user uuid) returns int
 language sql stable security definer set search_path = public as $$
   select case when public.is_player() then
            coalesce((select sum(points) from public.proofs where user_id = p_user and status = 'approved'), 0)
+         + coalesce((select sum(amount) from public.diamond_grants where user_id = p_user and status = 'approved'), 0)
          - coalesce((select sum(cost) from public.redemptions where user_id = p_user), 0)
          end;
 $$;
+
+create or replace function public.request_diamonds(p_to uuid, p_amount int, p_reason text) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  if not public.is_player() then raise exception 'Kein Spieler'; end if;
+  if not exists (select 1 from public.players where id = p_to) then raise exception 'Spieler nicht gefunden'; end if;
+  if p_amount is null or p_amount < 1 or p_amount > 100000 then raise exception 'Anzahl zwischen 1 und 100000'; end if;
+  if char_length(coalesce(trim(p_reason), '')) = 0 then raise exception 'Grund fehlt'; end if;
+  insert into public.diamond_grants (user_id, requested_by, amount, reason)
+  values (p_to, auth.uid(), p_amount, left(trim(p_reason), 120));
+end $$;
+
+create or replace function public.decide_diamonds(p_id uuid, p_ok boolean) returns void
+language plpgsql security definer set search_path = public as $$
+declare g public.diamond_grants;
+begin
+  if not public.is_player() then raise exception 'Kein Spieler'; end if;
+  select * into g from public.diamond_grants where id = p_id for update;
+  if not found then raise exception 'Antrag nicht gefunden'; end if;
+  if g.requested_by = auth.uid() then raise exception 'Das bestätigt die andere Person'; end if;
+  if g.status <> 'pending' then raise exception 'Schon entschieden'; end if;
+  update public.diamond_grants
+     set status = case when p_ok then 'approved' else 'rejected' end, decided_by = auth.uid(), decided_at = now()
+   where id = p_id;
+end $$;
+
+-- Eigenen, noch offenen Antrag zurückziehen
+create or replace function public.cancel_diamonds(p_id uuid) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  delete from public.diamond_grants where id = p_id and requested_by = auth.uid() and status = 'pending';
+  if not found then raise exception 'Nicht möglich'; end if;
+end $$;
 
 create or replace function public.redeem(p_reward uuid) returns void
 language plpgsql security definer set search_path = public as $$
@@ -350,6 +399,150 @@ begin
   if not found then raise exception 'Nicht möglich'; end if;
 end $$;
 
+-- Mehrere Tage am Stück (z. B. Ferien) bekommen dieselbe group_id und werden zusammen bestätigt
+alter table public.pause_days add column if not exists group_id uuid;
+create index if not exists pause_days_group on public.pause_days (group_id) where group_id is not null;
+
+create or replace function public.decide_pause_group(p_user uuid, p_group uuid, p_ok boolean) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  if not public.is_player() then raise exception 'Kein Spieler'; end if;
+  if p_user = auth.uid() then raise exception 'Eigene Pause-Tage bestätigt die andere Person'; end if;
+  if p_ok then
+    update public.pause_days set approved = true, approved_by = auth.uid()
+     where user_id = p_user and group_id = p_group and not approved;
+  else
+    delete from public.pause_days where user_id = p_user and group_id = p_group and not approved;
+  end if;
+  if not found then raise exception 'Nicht möglich'; end if;
+end $$;
+
+-- ---------- Löschanfragen (Verlauf aufräumen) ----------
+-- Beweise, Einlösungen und Diamanten-Anträge werden nur gelöscht,
+-- wenn die Person zustimmt, die die Löschung NICHT angefragt hat.
+create table if not exists public.delete_requests (
+  id uuid primary key default gen_random_uuid(),
+  kind text not null check (kind in ('proof','redemption','grant')),
+  target_id uuid not null,
+  target_owner uuid references public.players(id) on delete cascade,
+  label text not null,
+  requested_by uuid not null references public.players(id) on delete cascade,
+  reason text check (char_length(reason) <= 120),
+  status text not null default 'pending' check (status in ('pending','approved','rejected')),
+  decided_by uuid references public.players(id) on delete set null,
+  decided_at timestamptz,
+  created_at timestamptz not null default now()
+);
+create unique index if not exists delete_requests_one_open
+  on public.delete_requests (kind, target_id) where status = 'pending';
+
+create or replace function public.request_delete(p_kind text, p_target uuid, p_reason text) returns void
+language plpgsql security definer set search_path = public as $$
+declare v_owner uuid; v_label text;
+begin
+  if not public.is_player() then raise exception 'Kein Spieler'; end if;
+  if p_kind = 'proof' then
+    select pr.user_id, coalesce(t.title, 'Beweis') || ' am ' || to_char(pr.for_date, 'DD.MM.') || ' (' || pr.points || ' Diamanten)'
+      into v_owner, v_label
+      from public.proofs pr left join public.tasks t on t.id = pr.task_id where pr.id = p_target;
+  elsif p_kind = 'redemption' then
+    select r.user_id, 'Einlösung „' || r.title || '“ (' || r.cost || ' Diamanten)'
+      into v_owner, v_label from public.redemptions r where r.id = p_target;
+  elsif p_kind = 'grant' then
+    select g.user_id, g.amount || ' Diamanten: ' || g.reason
+      into v_owner, v_label from public.diamond_grants g where g.id = p_target and g.status <> 'pending';
+  else
+    raise exception 'Unbekannte Art';
+  end if;
+  if v_owner is null then raise exception 'Eintrag nicht gefunden'; end if;
+  if exists (select 1 from public.delete_requests where kind = p_kind and target_id = p_target and status = 'pending') then
+    raise exception 'Löschung ist schon angefragt';
+  end if;
+  insert into public.delete_requests (kind, target_id, target_owner, label, requested_by, reason)
+  values (p_kind, p_target, v_owner, v_label, auth.uid(), nullif(left(trim(coalesce(p_reason, '')), 120), ''));
+end $$;
+
+-- Gibt bei gelöschten Beweisen den Foto-Pfad zurück, damit die App das Foto wegräumen kann
+create or replace function public.decide_delete(p_id uuid, p_ok boolean) returns text
+language plpgsql security definer set search_path = public as $$
+declare r public.delete_requests; v_photo text;
+begin
+  if not public.is_player() then raise exception 'Kein Spieler'; end if;
+  select * into r from public.delete_requests where id = p_id for update;
+  if not found then raise exception 'Anfrage nicht gefunden'; end if;
+  if r.requested_by = auth.uid() then raise exception 'Das bestätigt die andere Person'; end if;
+  if r.status <> 'pending' then raise exception 'Schon entschieden'; end if;
+  update public.delete_requests
+     set status = case when p_ok then 'approved' else 'rejected' end, decided_by = auth.uid(), decided_at = now()
+   where id = p_id;
+  if p_ok then
+    if r.kind = 'proof' then
+      delete from public.proofs where id = r.target_id returning photo_path into v_photo;
+    elsif r.kind = 'redemption' then
+      delete from public.redemptions where id = r.target_id;
+    elsif r.kind = 'grant' then
+      delete from public.diamond_grants where id = r.target_id;
+    end if;
+  end if;
+  return v_photo;
+end $$;
+
+create or replace function public.cancel_delete(p_id uuid) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  delete from public.delete_requests where id = p_id and requested_by = auth.uid() and status = 'pending';
+  if not found then raise exception 'Nicht möglich'; end if;
+end $$;
+
+-- ---------- Push-Benachrichtigungen ----------
+create table if not exists public.push_subscriptions (
+  endpoint text primary key,
+  user_id uuid not null references public.players(id) on delete cascade,
+  p256dh text not null,
+  auth text not null,
+  created_at timestamptz not null default now()
+);
+
+create or replace function public.save_push_subscription(p_endpoint text, p_p256dh text, p_auth text) returns void
+language plpgsql security definer set search_path = public as $$
+begin
+  if not public.is_player() then raise exception 'Kein Spieler'; end if;
+  if p_endpoint is null or p_endpoint not like 'https://%' then raise exception 'Ungültiges Abo'; end if;
+  insert into public.push_subscriptions (endpoint, user_id, p256dh, auth)
+  values (p_endpoint, auth.uid(), p_p256dh, p_auth)
+  on conflict (endpoint) do update set user_id = auth.uid(), p256dh = excluded.p256dh, auth = excluded.auth, created_at = now();
+end $$;
+
+create or replace function public.remove_push_subscription(p_endpoint text) returns void
+language sql security definer set search_path = public as $$
+  delete from public.push_subscriptions where endpoint = p_endpoint and user_id = auth.uid();
+$$;
+
+-- Für die Abend-Erinnerung: wer hat heute noch offene Challenges? (nur für den Server)
+create or replace function public.reminder_targets() returns table (user_id uuid, open_count int)
+language sql stable security definer set search_path = public as $$
+  select p.id,
+         (select count(*)::int from public.tasks t
+           where t.owner = p.id
+             and public.task_due_on(t, public.berlin_today())
+             and public.berlin_today() >= (t.approved_at at time zone 'Europe/Berlin')::date
+             and not exists (select 1 from public.proofs pr
+                              where pr.task_id = t.id and pr.for_date = public.berlin_today() and pr.status <> 'rejected'))
+    from public.players p
+   where not exists (select 1 from public.pause_days pd
+                      where pd.user_id = p.id and pd.day = public.berlin_today() and pd.approved);
+$$;
+
+-- ---------- Verweise auf Prüfer: beim Löschen eines Accounts einfach leeren ----------
+alter table public.tasks      drop constraint if exists tasks_approved_by_fkey;
+alter table public.tasks      add  constraint tasks_approved_by_fkey      foreign key (approved_by) references public.players(id) on delete set null;
+alter table public.proofs     drop constraint if exists proofs_reviewed_by_fkey;
+alter table public.proofs     add  constraint proofs_reviewed_by_fkey     foreign key (reviewed_by) references public.players(id) on delete set null;
+alter table public.rewards    drop constraint if exists rewards_approved_by_fkey;
+alter table public.rewards    add  constraint rewards_approved_by_fkey    foreign key (approved_by) references public.players(id) on delete set null;
+alter table public.pause_days drop constraint if exists pause_days_approved_by_fkey;
+alter table public.pause_days add  constraint pause_days_approved_by_fkey foreign key (approved_by) references public.players(id) on delete set null;
+
 -- ---------- Zugriffsschutz (Row Level Security) ----------
 alter table public.players     enable row level security;
 alter table public.tasks       enable row level security;
@@ -357,6 +550,14 @@ alter table public.proofs      enable row level security;
 alter table public.rewards     enable row level security;
 alter table public.redemptions enable row level security;
 alter table public.pause_days  enable row level security;
+alter table public.diamond_grants     enable row level security;
+alter table public.delete_requests    enable row level security;
+alter table public.push_subscriptions enable row level security;  -- keine Policy: nur über Funktionen/Server
+
+drop policy if exists grants_read on public.diamond_grants;
+create policy grants_read on public.diamond_grants for select to authenticated using (public.is_player());
+drop policy if exists delreq_read on public.delete_requests;
+create policy delreq_read on public.delete_requests for select to authenticated using (public.is_player());
 
 drop policy if exists players_read on public.players;
 create policy players_read on public.players for select to authenticated using (public.is_player());
@@ -389,8 +590,10 @@ create policy pause_delete on public.pause_days for delete to authenticated
 
 -- Tabellen-Rechte (neue Supabase-Projekte geben Tabellen nicht mehr automatisch frei)
 grant usage on schema public to authenticated;
-revoke all on public.players, public.tasks, public.proofs, public.rewards, public.redemptions, public.pause_days from authenticated;
-grant select on public.players, public.tasks, public.proofs, public.rewards, public.redemptions, public.pause_days to authenticated;
+revoke all on public.players, public.tasks, public.proofs, public.rewards, public.redemptions, public.pause_days,
+              public.diamond_grants, public.delete_requests, public.push_subscriptions from authenticated;
+grant select on public.players, public.tasks, public.proofs, public.rewards, public.redemptions, public.pause_days,
+                public.diamond_grants, public.delete_requests to authenticated;
 grant insert on public.tasks, public.proofs, public.rewards, public.pause_days to authenticated;
 grant delete on public.pause_days to authenticated;
 
@@ -398,6 +601,15 @@ grant delete on public.pause_days to authenticated;
 revoke all on all tables in schema public from anon;
 revoke execute on all functions in schema public from anon, public;
 grant execute on all functions in schema public to authenticated;
+
+-- Die Push-Funktion (Edge Function) arbeitet mit dem Server-Schlüssel
+revoke execute on function public.reminder_targets() from authenticated;
+grant usage on schema public to service_role;
+grant select on public.players to service_role;
+grant select, insert, update, delete on public.push_subscriptions to service_role;
+grant execute on function public.reminder_targets(), public.berlin_today() to service_role;
+grant execute on function public.task_due_on(public.tasks, date) to service_role;
+grant select on public.tasks, public.proofs, public.pause_days to service_role;
 
 -- ---------- Foto-Speicher ----------
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
@@ -423,4 +635,7 @@ create policy proofs_remove on storage.objects for delete to authenticated
     or exists (select 1 from public.proofs p where p.photo_path = name and (
          (p.reviewed_at is not null and p.reviewed_at < now() - interval '3 days')
          or (p.reviewed_at is null and p.created_at < now() - interval '7 days')))
+    -- oder Foto eines gelöschten Beweises (gehört zu keinem Beweis mehr, älter als 15 Minuten)
+    or (not exists (select 1 from public.proofs p where p.photo_path = name)
+        and created_at < now() - interval '15 minutes')
   ));

@@ -49,17 +49,35 @@ Es können nur **2 Spieler** beitreten. Wer sich sonst registriert, sieht nichts
 ## 7. Danach dichtmachen
 Wenn ihr beide drin seid: **Authentication → Sign In / Providers** (bzw. Settings) → **„Allow new users to sign up“ ausschalten**.
 
+## 8. Push-Benachrichtigungen einrichten (einmalig, ca. 10 Minuten)
+Die geheimen Werte stehen in der Datei **`PUSH-GEHEIM.txt`** im Projektordner. Sie liegt nur auf deinem PC und wird nie hochgeladen.
+
+1. **Datenbank aktualisieren:** SQL Editor → New query → kompletten Inhalt von `schema.sql` → **Run** (Warnung bestätigen).
+2. **Edge Function anlegen:** links **Edge Functions** → **Deploy a new function** → **Via Editor**.
+   - Name: `push`
+   - Den kompletten Inhalt von `supabase/functions/push/index.ts` in den Editor einfügen (alles Vorhandene ersetzen) → **Deploy function**.
+3. **Login-Prüfung ausschalten:** In der Funktion `push` → **Details** (bzw. Settings) → **„Verify JWT with legacy secret“ / „Enforce JWT verification“ ausschalten** → Save. Die Funktion prüft den Login selbst.
+4. **Secrets eintragen:** **Edge Functions → Secrets** → die drei Werte aus `PUSH-GEHEIM.txt` anlegen: `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `CRON_SECRET` → Save.
+5. **Abend-Erinnerung:** SQL Editor → New query → den SQL-Block aus `PUSH-GEHEIM.txt` (Teil 2) einfügen → **Run**.
+   Die Erinnerung kommt um **19 Uhr**, wenn noch eine Challenge offen ist. Andere Uhrzeit: Secret `REMINDER_HOURS` anlegen, z. B. `20` oder `19,21`.
+6. **Auf beiden iPhones:** Das alte Streako-Icon vom Home-Bildschirm löschen und die Seite in Safari neu über **Teilen → Zum Home-Bildschirm** hinzufügen (iOS 16.4 oder neuer). App öffnen → **Profil → Benachrichtigungen aktivieren** → erlauben → **Test senden**.
+
 ## So funktioniert's
 - **Challenges** legst du im Profil an (jeden Tag, bestimmte Wochentage, ein Datum oder alle X Tage, z. B. 14 = alle 2 Wochen), optional mit Uhrzeit. Die andere Person muss sie bestätigen. Punkte ändern = Challenge beenden und neu anlegen.
 - **Beweis**: nur Live-Kamera, die Uhrzeit setzt der Server, die genaue Position wird gespeichert (erst ab ±150 m Genauigkeit). Hat die Challenge eine Uhrzeit, steht beim Prüfen „pünktlich“ oder „zu spät“. Pro Challenge und Tag ein Beweis (nach Ablehnung nochmal möglich). Nach Mitternacht zählt der neue Tag.
 - **Prüfen**: im Duell-Tab bestätigt ihr gegenseitig Beweise, neue Challenges, Belohnungs-Preise und Pause-Tage.
 - **Streak**: Tage am Stück, an denen alles erledigt war. Tage ohne Challenges und bestätigte Pause-Tage zählen nicht dagegen. **1 Joker pro Woche** rettet einen verpassten Tag automatisch. Pause-Tage gehen nur für heute oder später und zählen erst, wenn die andere Person zustimmt.
+- **Pause-Zeitraum** (z. B. Ferien): im Profil „Von“ und „Bis“ wählen. Die andere Person bestätigt den ganzen Zeitraum mit einem Klick (max. 90 Tage am Stück).
 - **Shop**: eigene Belohnungen anlegen, die andere Person bestätigt den Preis. Nach dem Einlösen hakt sie „Erledigt“ ab.
+- **Diamanten anfragen** (Shop): für dich (Bonus, Korrektur) oder als Geschenk für die andere Person. Zählt erst, wenn die andere Person zustimmt. Falsch eingelöst? Bei der Einlösung auf **„Zurück“** tippen – nach Zustimmung gibt es die Diamanten zurück.
+- **Verlauf aufräumen** (Duell): Mit dem Mülleimer fragst du an, einen Beweis, eine Einlösung oder einen Diamanten-Antrag zu löschen – egal ob deinen oder den der anderen Person. Gelöscht wird erst, wenn die **andere** Person zustimmt. Offene Anfragen kannst du unter „Deine Anfragen“ zurückziehen.
+- **Push-Benachrichtigungen**: du bekommst Bescheid, wenn die andere Person etwas einreicht, vorschlägt oder entscheidet, und abends, wenn bei dir noch etwas offen ist.
 - **Fotos** werden 3 Tage nach der Prüfung gelöscht (nie geprüfte nach 7 Tagen) – jeweils beim nächsten Öffnen der App. Zeit, Ort und Punkte bleiben.
 
 ## Gut zu wissen
 - **Gratis-Grenzen** bei Supabase: 500 MB Datenbank, 1 GB Speicher – reicht locker, weil Fotos gelöscht werden. Ein Gratis-Projekt **pausiert nach ca. 7 Tagen ohne Nutzung**; dann im Supabase-Dashboard auf „Restore“ drücken.
 - **Nicht 100 % fälschungssicher**: Ein Foto von einem anderen Bildschirm, gefälschtes GPS mit Spezial-Apps oder wer mit Programmier-Wissen direkt an der App vorbei Daten schickt – das geht theoretisch. Server-Zeit, frisches Foto (max. 10 Minuten alt, jedes Foto nur einmal), Ort und gegenseitiges Prüfen machen Schummeln aber richtig nervig.
 - **Wer nicht prüft, blockiert Punkte** – also regelmäßig in den Duell-Tab schauen (roter Punkt am Pokal).
-- **Erinnerungs-Push** ist noch nicht drin. Das wäre ein nächster Ausbauschritt.
+- **Push klappt nicht?** Profil → „Test senden“. Kommt „Push-Server antwortet nicht“, ist die Edge Function noch nicht (richtig) eingerichtet (Schritt 8). Logs: Edge Functions → push → Logs.
+- **Gelöschter Test-Account:** Die Verweise auf Prüfer werden jetzt automatisch geleert – ein Account lässt sich unter Authentication → Users direkt löschen.
 - Name der App ändern: in `index.html` „Streako“ ersetzen.

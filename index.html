@@ -10,6 +10,7 @@
 <meta name="theme-color" content="#ffffff">
 <title>Streako</title>
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
 <link rel="icon" href="data:image/png;base64,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">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
@@ -90,6 +91,11 @@ label{font-size:14px;color:var(--muted)}
 .success{background:var(--green-l);color:var(--green-d);border-radius:16px;padding:16px;font-weight:900;text-align:center;font-size:18px}
 .toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--text);color:#fff;padding:12px 18px;border-radius:14px;font-weight:800;z-index:30;max-width:90%;text-align:center}
 .hidden{display:none!important}
+.iconbtn{background:none;border:2px solid var(--gray);border-radius:10px;padding:5px 8px;font-size:16px;color:var(--muted);cursor:pointer;flex:none}
+.hrow{padding:7px 0;border-bottom:2px solid var(--gray)}
+.hrow>span:first-child{flex:1;min-width:0}
+.hrow .r{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:4px;flex:none;max-width:48%}
+.note{background:var(--amber-l);color:var(--amber-d);border-radius:12px;padding:10px 12px;font-size:14px;margin:8px 0}
 a{color:var(--blue)}
 </style>
 </head>
@@ -109,6 +115,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 // ===================== HIER EINTRAGEN =====================
 const SUPABASE_URL = 'https://tsrdcfafckyrisrvhzqh.supabase.co';        // z.B. https://abcdxyz.supabase.co
 const SUPABASE_ANON_KEY = 'sb_publishable_NCa-fVxzVZujbfeQhGZQDg_CuWdj20J'; // sb_publishable_… (oder alter anon-Key eyJ…) – NIE den Secret-/service_role-Key
+const VAPID_PUBLIC_KEY = 'BF0bX-zCXOQhZ7dXY2PptKt-UYGG68nYoSgXtR8Jf9HeAa-wjTrE_LhFyvfg3ocFGu97ExpJvyztJK_Ar6GbEfM'; // öffentlicher Push-Schlüssel (darf öffentlich sein)
 // ==========================================================
 
 const $app = document.getElementById('app');
@@ -145,9 +152,33 @@ function toast(msg) {
 function errMsg(e) { return (e && (e.message || e.error_description)) || 'Etwas ist schiefgelaufen'; }
 
 // ---------- Zustand ----------
-const S = { session:null, me:null, players:[], tasks:[], proofs:[], rewards:[], redemptions:[], pauses:[], tab:'home', urls:{} };
+const S = { session:null, me:null, players:[], tasks:[], proofs:[], rewards:[], redemptions:[], pauses:[], grants:[], delreqs:[],
+  dbOld:false, histN:15, tab:'home', urls:{} };
 const other = () => S.players.find(p => p.id !== S.me.id);
 const nameOf = id => (S.players.find(p => p.id === id) || {}).name || '?';
+const oName = () => (other() || {}).name || 'die andere Person';
+
+// Push an die andere Person (still, wenn Push noch nicht eingerichtet ist)
+function notify(title, body, extra = {}) {
+  try { sb.functions.invoke('push', { body: { title, body, ...extra } }).catch(() => {}); } catch (_) {}
+}
+// Tage-Liste → „Mo, 22.12. – Di, 06.01. · 16 Tage“
+function rangeText(days) {
+  const d = days.slice().sort();
+  if (d.length === 1) return prettyDate(d[0]);
+  return `${prettyDate(d[0])} – ${prettyDate(d[d.length - 1])} · ${d.length} Tage`;
+}
+// Pause-Tage nach Antrag gruppieren (ältere Einzeltage ohne group_id einzeln)
+function groupPauses(list) {
+  const m = new Map();
+  for (const p of list) {
+    const key = p.group_id || 'd:' + p.day;
+    if (!m.has(key)) m.set(key, { key, group_id: p.group_id || null, user_id: p.user_id, days: [], approved: true });
+    const g = m.get(key); g.days.push(p.day); if (!p.approved) g.approved = false;
+  }
+  return [...m.values()].map(g => (g.days.sort(), g)).sort((a, b) => a.days[0].localeCompare(b.days[0]));
+}
+const openDel = (kind, id) => S.delreqs.find(r => r.kind === kind && r.target_id === id && r.status === 'pending');
 
 // ---------- Logik ----------
 function dueOn(t, d) {
@@ -199,8 +230,9 @@ function streakOf(uid) {
 }
 function balanceOf(uid) {
   const plus = S.proofs.filter(p => p.user_id === uid && p.status === 'approved').reduce((a,p) => a + p.points, 0);
+  const bonus = S.grants.filter(g => g.user_id === uid && g.status === 'approved').reduce((a,g) => a + g.amount, 0);
   const minus = S.redemptions.filter(r => r.user_id === uid).reduce((a,r) => a + r.cost, 0);
-  return plus - minus;
+  return plus + bonus - minus;
 }
 function weekPoints(uid) {
   const ws = weekStart(berlinDate());
@@ -220,9 +252,11 @@ function todoCount() {
   const o = other(); if (!o) return 0;
   return S.proofs.filter(p => p.user_id === o.id && p.status === 'pending').length
     + S.tasks.filter(t => t.owner === o.id && !t.approved && !t.archived_at).length
-    + S.pauses.filter(p => p.user_id === o.id && !p.approved).length
+    + groupPauses(S.pauses.filter(p => p.user_id === o.id && !p.approved)).length
     + S.rewards.filter(r => r.owner === o.id && !r.approved).length
-    + S.redemptions.filter(r => r.user_id === o.id && !r.fulfilled).length;
+    + S.redemptions.filter(r => r.user_id === o.id && !r.fulfilled).length
+    + S.grants.filter(g => g.requested_by === o.id && g.status === 'pending').length
+    + S.delreqs.filter(r => r.requested_by === o.id && r.status === 'pending').length;
 }
 
 // ---------- Daten ----------
@@ -247,8 +281,13 @@ async function loadAll() {
   ]);
   for (const r of [players, tasks, rewards, pauses]) if (r.error) throw r.error;
   S.players = players.data; S.tasks = tasks.data; S.proofs = proofs; S.rewards = rewards.data; S.redemptions = redemptions; S.pauses = pauses.data;
+  // Neue Tabellen: fehlen sie (schema.sql noch nicht neu ausgeführt), läuft die App trotzdem weiter
+  const opt = async table => { try { return { rows: await fetchAll(table, 'created_at', false) }; } catch (e) { return { rows: [], missing: true }; } };
+  const [g, d] = await Promise.all([opt('diamond_grants'), opt('delete_requests')]);
+  S.grants = g.rows; S.delreqs = d.rows; S.dbOld = !!(g.missing || d.missing);
   S.me = S.players.find(p => p.id === S.session.user.id) || null;
 }
+const dbHint = () => S.dbOld ? `<div class="note"><i class="ti ti-alert-triangle"></i> Datenbank-Update fehlt: <b>schema.sql</b> in Supabase im SQL Editor nochmal komplett ausführen.</div>` : '';
 
 async function cleanupPhotos() {
   try {
@@ -378,11 +417,19 @@ function renderDuel() {
   }
   const pend = S.proofs.filter(p => p.user_id === o.id && p.status === 'pending');
   const tsk = S.tasks.filter(t => t.owner === o.id && !t.approved && !t.archived_at);
-  const pau = S.pauses.filter(p => p.user_id === o.id && !p.approved);
+  const pau = groupPauses(S.pauses.filter(p => p.user_id === o.id && !p.approved));
   const rew = S.rewards.filter(r => r.owner === o.id && !r.approved);
   const red = S.redemptions.filter(r => r.user_id === o.id && !r.fulfilled);
-  html += `<h2>Zu prüfen</h2>`;
-  if (!pend.length && !tsk.length && !rew.length && !red.length && !pau.length) html += `<div class="empty">Nichts zu prüfen.</div>`;
+  const grq = S.grants.filter(g => g.requested_by === o.id && g.status === 'pending');
+  const drq = S.delreqs.filter(r => r.requested_by === o.id && r.status === 'pending');
+  html += dbHint() + `<h2>Zu prüfen</h2>`;
+  if (!pend.length && !tsk.length && !rew.length && !red.length && !pau.length && !grq.length && !drq.length) html += `<div class="empty">Nichts zu prüfen.</div>`;
+  html += drq.map(r => `<div class="card"><p class="muted">${esc(o.name)} möchte löschen ${r.target_owner === S.me.id ? '(deinen Eintrag)' : '(eigenen Eintrag)'}</p>
+      <p class="t">${esc(r.label)}</p><p class="muted">${esc(delEffect(r))}</p>${r.reason ? `<p class="muted">Grund: ${esc(r.reason)}</p>` : ''}
+      <div class="row2" style="margin-top:10px"><button class="btn ghost small" data-dd="${r.id}" data-ok="0">Behalten</button><button class="btn red small" data-dd="${r.id}" data-ok="1">Löschen</button></div></div>`).join('');
+  html += grq.map(g => `<div class="card"><p class="muted">${esc(o.name)} beantragt Diamanten ${g.user_id === S.me.id ? 'für dich' : 'für sich'}</p>
+      <div class="line"><span class="t">${esc(g.reason)}</span><span class="pill gem"><i class="ti ti-diamond"></i>+${g.amount}</span></div>
+      <div class="row2" style="margin-top:10px"><button class="btn red small" data-dg="${g.id}" data-ok="0">Nein</button><button class="btn small" data-dg="${g.id}" data-ok="1">Okay</button></div></div>`).join('');
   html += pend.map(p => {
     const t = S.tasks.find(x => x.id === p.task_id) || {};
     const map = `https://www.openstreetmap.org/?mlat=${p.lat}&mlon=${p.lng}#map=18/${p.lat}/${p.lng}`;
@@ -397,37 +444,119 @@ function renderDuel() {
   html += tsk.map(t => `<div class="card"><p class="muted">Neue Challenge von ${esc(o.name)}</p><div class="line"><span class="t">${esc(t.title)}</span><span class="pill gem"><i class="ti ti-diamond"></i>${t.points}</span></div>
       <p class="muted">${esc(repeatText(t))}${t.proof_hint ? ' · Beweis: ' + esc(t.proof_hint) : ''}</p>
       <div class="row2" style="margin-top:10px"><button class="btn red small" data-dt="${t.id}" data-ok="0">Ablehnen</button><button class="btn small" data-dt="${t.id}" data-ok="1">Passt</button></div></div>`).join('');
-  html += pau.map(p => `<div class="card"><p class="muted">${esc(o.name)} möchte einen Pause-Tag</p><span class="t">${prettyDate(p.day)}</span>
-      <div class="row2" style="margin-top:10px"><button class="btn red small" data-pu="${p.day}" data-ok="0">Nein</button><button class="btn small" data-pu="${p.day}" data-ok="1">Okay</button></div></div>`).join('');
+  html += pau.map(g => `<div class="card"><p class="muted">${esc(o.name)} möchte ${g.days.length === 1 ? 'einen Pause-Tag' : 'Pause-Tage'}</p><span class="t">${esc(rangeText(g.days))}</span>
+      <div class="row2" style="margin-top:10px"><button class="btn red small" data-pu="${esc(g.key)}" data-ok="0">Nein</button><button class="btn small" data-pu="${esc(g.key)}" data-ok="1">Okay</button></div></div>`).join('');
   html += rew.map(r => `<div class="card"><p class="muted">Neue Belohnung von ${esc(o.name)}</p><div class="line"><span class="t">${esc(r.title)}</span><span class="pill gem"><i class="ti ti-diamond"></i>${r.cost}</span></div>
       <div class="row2" style="margin-top:10px"><button class="btn red small" data-dr="${r.id}" data-ok="0">Zu billig</button><button class="btn small" data-dr="${r.id}" data-ok="1">Preis passt</button></div></div>`).join('');
   html += red.map(r => `<div class="card hl"><p class="muted">${esc(o.name)} hat eingelöst</p><div class="line"><span class="t">${esc(r.title)}</span><span class="pill gem"><i class="ti ti-diamond"></i>${r.cost}</span></div>
       <button class="btn small" style="margin-top:10px" data-fr="${r.id}">Erledigt</button></div>`).join('');
-  const hist = S.proofs.slice(0, 15).map(p => {
-    const t = S.tasks.find(x => x.id === p.task_id) || {};
-    const lateTag = p.late ? '<span class="tag no" style="margin-right:4px">zu spät</span>' : '';
-    const tag = lateTag + (p.status === 'approved' ? '<span class="tag ok">bestätigt</span>' : p.status === 'pending' ? '<span class="tag wait">offen</span>' : '<span class="tag no">abgelehnt</span>');
-    return `<div class="line" style="padding:7px 0;border-bottom:2px solid var(--gray)"><span>${esc(nameOf(p.user_id))}: ${esc(t.title)}<br><span class="muted">${prettyDate(p.for_date)}, ${tFmt.format(new Date(p.created_at)).slice(0,5)}</span></span>${tag}</div>`;
-  }).join('');
-  if (hist) html += `<h2>Verlauf</h2>${hist}`;
+  // Eigene offene Anfragen (warten auf die andere Person)
+  const myReq = [
+    ...S.delreqs.filter(r => r.requested_by === S.me.id && r.status === 'pending').map(r =>
+      `<div class="line hrow"><span>Löschen: ${esc(r.label)}<br><span class="muted">wartet auf ${esc(o.name)}</span></span><button class="btn ghost small" data-cd="${r.id}">Zurückziehen</button></div>`),
+    ...S.grants.filter(g => g.requested_by === S.me.id && g.status === 'pending').map(g =>
+      `<div class="line hrow"><span>+${g.amount} Diamanten für ${g.user_id === S.me.id ? 'dich' : esc(o.name)}: ${esc(g.reason)}<br><span class="muted">wartet auf ${esc(o.name)}</span></span><button class="btn ghost small" data-cg="${g.id}">Zurückziehen</button></div>`),
+  ];
+  if (myReq.length) html += `<h2>Deine Anfragen</h2>${myReq.join('')}`;
+  const items = historyItems();
+  const hist = items.slice(0, S.histN).map(histRow).join('');
+  if (hist) html += `<h2>Verlauf</h2><p class="muted" style="margin:-4px 0 4px">Mit <i class="ti ti-trash"></i> fragst du eine Löschung an – die andere Person muss zustimmen.</p>${hist}`
+    + (items.length > S.histN ? `<div style="height:10px"></div><button class="btn ghost" id="more">Mehr anzeigen (${items.length - S.histN})</button>` : '');
   $app.innerHTML = html;
   $app.querySelectorAll('[data-img]').forEach(async img => { const u = await photoUrl(img.dataset.img); if (u) img.src = u; else img.alt = 'Foto schon gelöscht'; });
-  const act = (sel, fn, key) => $app.querySelectorAll(sel).forEach(b => b.onclick = async () => {
+  const me = S.me.name;
+  // sel: Button-Selektor, fn: RPC, args(b): Parameter, msg(b, ok): [Titel, Text] für die Push-Nachricht
+  const act = (sel, fn, args, msg) => $app.querySelectorAll(sel).forEach(b => b.onclick = async () => {
     b.disabled = true;
-    const { error } = await sb.rpc(fn, { [key]: b.dataset[Object.keys(b.dataset)[0]], ...(b.dataset.ok !== undefined ? { p_ok: b.dataset.ok === '1' } : {}) });
+    const ok = b.dataset.ok === '1';
+    const m = msg ? msg(b, ok) : null; // vor dem Neuladen bauen, solange die Daten noch da sind
+    const { data, error } = await sb.rpc(fn, args(b, ok));
     if (error) { b.disabled = false; return toast(errMsg(error)); }
+    if (fn === 'decide_delete' && data) { try { await sb.storage.from('proofs').remove([data]); } catch (_) {} }
+    if (m) notify(m[0], m[1]);
     await refresh();
   });
-  act('[data-rp]', 'review_proof', 'p_id');
-  act('[data-dt]', 'decide_task', 'p_id');
-  act('[data-dr]', 'decide_reward', 'p_id');
-  act('[data-fr]', 'fulfill_redemption', 'p_id');
+  const taskOfProof = id => (S.tasks.find(t => t.id === (S.proofs.find(p => p.id === id) || {}).task_id) || {}).title || 'Beweis';
+  act('[data-rp]', 'review_proof', (b, ok) => ({ p_id: b.dataset.rp, p_ok: ok }),
+    (b, ok) => [ok ? 'Beweis bestätigt ✅' : 'Beweis abgelehnt ❌', `${me} hat „${taskOfProof(b.dataset.rp)}“ ${ok ? 'bestätigt' : 'abgelehnt'}`]);
+  act('[data-dt]', 'decide_task', (b, ok) => ({ p_id: b.dataset.dt, p_ok: ok }),
+    (b, ok) => [ok ? 'Challenge angenommen' : 'Challenge abgelehnt', `„${(S.tasks.find(t => t.id === b.dataset.dt) || {}).title || ''}“`]);
+  act('[data-dr]', 'decide_reward', (b, ok) => ({ p_id: b.dataset.dr, p_ok: ok }),
+    (b, ok) => [ok ? 'Preis bestätigt' : 'Preis abgelehnt', `„${(S.rewards.find(r => r.id === b.dataset.dr) || {}).title || ''}“`]);
+  act('[data-fr]', 'fulfill_redemption', b => ({ p_id: b.dataset.fr }),
+    b => ['Belohnung erledigt 🎉', `„${(S.redemptions.find(r => r.id === b.dataset.fr) || {}).title || ''}“ ist abgehakt`]);
+  act('[data-dg]', 'decide_diamonds', (b, ok) => ({ p_id: b.dataset.dg, p_ok: ok }),
+    (b, ok) => { const g = S.grants.find(x => x.id === b.dataset.dg) || {}; return [ok ? 'Diamanten genehmigt 💎' : 'Diamanten abgelehnt', `+${g.amount} · ${g.reason}`]; });
+  act('[data-dd]', 'decide_delete', (b, ok) => ({ p_id: b.dataset.dd, p_ok: ok }),
+    (b, ok) => [ok ? 'Löschung bestätigt 🗑️' : 'Löschung abgelehnt', (S.delreqs.find(r => r.id === b.dataset.dd) || {}).label || '']);
+  act('[data-cd]', 'cancel_delete', b => ({ p_id: b.dataset.cd }));
+  act('[data-cg]', 'cancel_diamonds', b => ({ p_id: b.dataset.cg }));
   $app.querySelectorAll('[data-pu]').forEach(b => b.onclick = async () => {
     b.disabled = true;
-    const { error } = await sb.rpc('decide_pause', { p_user: o.id, p_day: b.dataset.pu, p_ok: b.dataset.ok === '1' });
+    const g = pau.find(x => x.key === b.dataset.pu); const ok = b.dataset.ok === '1';
+    const { error } = g.group_id
+      ? await sb.rpc('decide_pause_group', { p_user: o.id, p_group: g.group_id, p_ok: ok })
+      : await sb.rpc('decide_pause', { p_user: o.id, p_day: g.days[0], p_ok: ok });
     if (error) { b.disabled = false; return toast(errMsg(error)); }
+    notify(ok ? 'Pause genehmigt 🏖️' : 'Pause abgelehnt', rangeText(g.days));
     await refresh();
   });
+  $app.querySelectorAll('[data-del]').forEach(b => b.onclick = () => askDelete(b.dataset.del.split(':')[0], b.dataset.del.split(':')[1]));
+  const more = document.getElementById('more');
+  if (more) more.onclick = () => { S.histN += 30; renderDuel(); };
+}
+
+// Was passiert, wenn die Löschung bestätigt wird?
+function delEffect(r) {
+  const who = r.target_owner === S.me.id ? 'dich' : nameOf(r.target_owner);
+  if (r.kind === 'proof') {
+    const p = S.proofs.find(x => x.id === r.target_id);
+    return p && p.status === 'approved' ? `−${p.points} Diamanten für ${who}, der Tag zählt dann als nicht erledigt` : 'Ändert keine Diamanten';
+  }
+  if (r.kind === 'redemption') { const x = S.redemptions.find(y => y.id === r.target_id); return x ? `${x.cost} Diamanten zurück an ${who}` : ''; }
+  if (r.kind === 'grant') { const g = S.grants.find(y => y.id === r.target_id); return g && g.status === 'approved' ? `−${g.amount} Diamanten für ${who}` : 'Ändert keine Diamanten'; }
+  return '';
+}
+
+// Gemeinsamer Verlauf: Beweise, Einlösungen und entschiedene Diamanten-Anträge
+function historyItems() {
+  const ts = s => new Date(s).getTime();
+  return [
+    ...S.proofs.map(p => ({ kind:'proof', id:p.id, at:ts(p.created_at), x:p })),
+    ...S.redemptions.map(r => ({ kind:'redemption', id:r.id, at:ts(r.created_at), x:r })),
+    ...S.grants.filter(g => g.status !== 'pending').map(g => ({ kind:'grant', id:g.id, at:ts(g.decided_at || g.created_at), x:g })),
+  ].sort((a, b) => b.at - a.at);
+}
+function histRow(it) {
+  const x = it.x; let main = '', sub = '', tag = '';
+  if (it.kind === 'proof') {
+    const t = S.tasks.find(y => y.id === x.task_id) || {};
+    main = `${esc(nameOf(x.user_id))}: ${esc(t.title)}`;
+    sub = `${prettyDate(x.for_date)}, ${tFmt.format(new Date(x.created_at)).slice(0,5)} · ${x.points} <i class="ti ti-diamond"></i>`;
+    tag = (x.late ? '<span class="tag no">zu spät</span>' : '') + (x.status === 'approved' ? '<span class="tag ok">bestätigt</span>' : x.status === 'pending' ? '<span class="tag wait">offen</span>' : '<span class="tag no">abgelehnt</span>');
+  } else if (it.kind === 'redemption') {
+    main = `${esc(nameOf(x.user_id))} kauft: ${esc(x.title)}`;
+    sub = `${prettyDate(berlinDate(new Date(x.created_at)))} · −${x.cost} <i class="ti ti-diamond"></i>`;
+    tag = x.fulfilled ? '<span class="tag ok">erledigt</span>' : '<span class="tag wait">offen</span>';
+  } else {
+    main = `${esc(nameOf(x.user_id))} bekommt +${x.amount} <i class="ti ti-diamond gem"></i>`;
+    sub = `${esc(x.reason)} · ${prettyDate(berlinDate(new Date(x.created_at)))}`;
+    tag = x.status === 'approved' ? '<span class="tag ok">genehmigt</span>' : '<span class="tag no">abgelehnt</span>';
+  }
+  const del = openDel(it.kind, it.id)
+    ? '<span class="tag wait"><i class="ti ti-trash"></i> angefragt</span>'
+    : (S.dbOld ? '' : `<button class="iconbtn" data-del="${it.kind}:${it.id}" aria-label="Löschung anfragen"><i class="ti ti-trash"></i></button>`);
+  return `<div class="line hrow"><span>${main}<br><span class="muted">${sub}</span></span><span class="r">${tag}${del}</span></div>`;
+}
+async function askDelete(kind, id) {
+  if (!other()) return toast('Erst wenn deine Schwester dabei ist');
+  const reason = prompt(`Löschung anfragen – ${oName()} muss zustimmen.\nGrund (optional):`, '');
+  if (reason === null) return;
+  const { error } = await sb.rpc('request_delete', { p_kind: kind, p_target: id, p_reason: reason });
+  if (error) return toast(errMsg(error));
+  const r = (await sb.from('delete_requests').select('label').eq('kind', kind).eq('target_id', id).eq('status', 'pending').maybeSingle()).data;
+  notify(`${S.me.name} möchte etwas löschen`, (r && r.label ? r.label : 'Eintrag im Verlauf') + ' – bitte bestätigen');
+  toast(`Angefragt – ${oName()} muss zustimmen`); await refresh();
 }
 
 function renderShop() {
@@ -447,14 +576,42 @@ function renderShop() {
     <label>Preis in Punkten</label><input id="rc" type="number" min="1" max="100000" inputmode="numeric" placeholder="300">
     <button class="btn blue" id="addR">Vorschlagen</button>
     <p class="muted" style="margin-top:8px">Die andere Person bestätigt den Preis.</p>`;
+  const o = other();
+  if (!S.dbOld) {
+    const myG = S.grants.filter(g => g.user_id === S.me.id || g.requested_by === S.me.id).slice(0, 8);
+    html += `<h2>Diamanten anfragen</h2>
+      <p class="muted" style="margin-bottom:6px">Aus Versehen das Falsche eingelöst, Bonus verdient oder ${o ? esc(o.name) : 'deiner Schwester'} was schenken? ${o ? esc(o.name) : 'Die andere Person'} muss zustimmen.</p>
+      <label>Für wen?</label><select id="gTo"><option value="${S.me.id}">Für mich</option>${o ? `<option value="${o.id}">Für ${esc(o.name)} (Geschenk)</option>` : ''}</select>
+      <label>Wie viele Diamanten?</label><input id="gA" type="number" min="1" max="100000" inputmode="numeric" placeholder="50">
+      <label>Grund</label><input id="gR" maxlength="120" placeholder="Falsch eingelöst, Bonus, …">
+      <button class="btn blue" id="addG">Anfragen</button>`
+      + myG.map(g => `<div class="line hrow"><span>${g.user_id === S.me.id ? 'Für dich' : 'Für ' + esc(nameOf(g.user_id))}: ${esc(g.reason)}<br><span class="muted">+${g.amount} Diamanten</span></span>${g.status === 'approved' ? '<span class="tag ok">genehmigt</span>' : g.status === 'pending' ? '<span class="tag wait">wartet</span>' : '<span class="tag no">abgelehnt</span>'}</div>`).join('');
+  } else html += dbHint();
   const myRed = S.redemptions.filter(r => r.user_id === S.me.id);
-  if (myRed.length) html += `<h2>Eingelöst</h2>` + myRed.map(r => `<div class="line" style="padding:7px 0;border-bottom:2px solid var(--gray)"><span>${esc(r.title)} <span class="muted">(${r.cost})</span></span>${r.fulfilled ? '<span class="tag ok">erledigt</span>' : '<span class="tag wait">offen</span>'}</div>`).join('');
+  if (myRed.length) html += `<h2>Eingelöst</h2>` + (S.dbOld ? '' : `<p class="muted" style="margin:-4px 0 4px">Falsch eingelöst? „Zurück“ fragt an, ob du die Diamanten zurückbekommst.</p>`)
+    + myRed.slice(0, 20).map(r => `<div class="line hrow"><span>${esc(r.title)} <span class="muted">(${r.cost})</span></span><span class="r">${r.fulfilled ? '<span class="tag ok">erledigt</span>' : '<span class="tag wait">offen</span>'}${S.dbOld ? '' : openDel('redemption', r.id) ? '<span class="tag wait">Rückgabe angefragt</span>' : `<button class="btn ghost small" data-back="${r.id}">Zurück</button>`}</span></div>`).join('');
   $app.innerHTML = html;
+  $app.querySelectorAll('[data-back]').forEach(b => b.onclick = () => askDelete('redemption', b.dataset.back));
+  const addG = document.getElementById('addG');
+  if (addG) addG.onclick = async () => {
+    if (!o) return toast('Erst wenn deine Schwester dabei ist');
+    const to = document.getElementById('gTo').value; const amount = parseInt(document.getElementById('gA').value, 10);
+    const reason = document.getElementById('gR').value.trim();
+    if (!(amount >= 1 && amount <= 100000)) return toast('Anzahl zwischen 1 und 100000');
+    if (!reason) return toast('Gib kurz einen Grund an');
+    addG.disabled = true;
+    const { error } = await sb.rpc('request_diamonds', { p_to: to, p_amount: amount, p_reason: reason });
+    addG.disabled = false;
+    if (error) return toast(errMsg(error));
+    notify(to === S.me.id ? `${S.me.name} möchte ${amount} Diamanten` : `${S.me.name} will dir ${amount} Diamanten schenken 💎`, `${reason} – bitte bestätigen`);
+    toast(`Angefragt – ${o.name} muss zustimmen`); await refresh();
+  };
   $app.querySelectorAll('[data-rd]').forEach(b => b.onclick = async () => {
     const r = S.rewards.find(x => x.id === b.dataset.rd);
     if (balanceOf(S.me.id) < r.cost) return toast(`Dir fehlen noch ${r.cost - balanceOf(S.me.id)} Punkte`);
     if (!confirm(`„${r.title}“ für ${r.cost} Punkte einlösen?`)) return;
     const { error } = await sb.rpc('redeem', { p_reward: r.id }); if (error) return toast(errMsg(error));
+    notify(`${S.me.name} hat eingelöst 🎁`, `„${r.title}“ für ${r.cost} Diamanten`);
     toast('Eingelöst! Die andere Person sieht es im Duell.'); await refresh();
   });
   $app.querySelectorAll('[data-ar]').forEach(b => b.onclick = async () => {
@@ -465,6 +622,7 @@ function renderShop() {
     if (!title) return toast('Wie heißt die Belohnung?');
     if (!(cost >= 1 && cost <= 100000)) return toast('Preis zwischen 1 und 100000');
     const { error } = await sb.from('rewards').insert({ title, cost, owner: S.me.id }); if (error) return toast(errMsg(error));
+    notify(`Neue Belohnung von ${S.me.name}`, `„${title}“ für ${cost} Diamanten – Preis okay?`);
     toast('Vorgeschlagen'); await refresh();
   };
 }
@@ -490,9 +648,12 @@ function renderMe() {
     <div id="iBox" class="hidden"><label>Alle wie viele Tage?</label><input id="ti" type="number" min="1" max="365" value="14" inputmode="numeric"></div>
     <button class="btn blue" id="addT">Vorschlagen</button>
     <p class="muted" style="margin-top:8px">Die andere Person bestätigt neue Challenges, damit keiner sich Punkte schenkt.</p>
-    <h2>Pause-Tage</h2><p class="muted" style="margin-bottom:6px">Ferien, krank – der Streak geht nicht verloren. Nur für heute oder später, die andere Person muss zustimmen.</p>
-    <div class="row2"><input id="pd" type="date" value="${today}" min="${today}"><button class="btn blue small" style="margin:4px 0 10px" id="addP">Hinzufügen</button></div>
-    ${pauses.map(p => `<div class="line" style="padding:7px 0;border-bottom:2px solid var(--gray)"><span>${prettyDate(p.day)} ${p.approved ? '<span class="tag ok">ok</span>' : '<span class="tag wait">wartet</span>'}</span><button class="btn ghost small" data-dp="${p.day}">Löschen</button></div>`).join('')}
+    <h2>Pause-Tage</h2><p class="muted" style="margin-bottom:6px">Ferien, krank – der Streak geht nicht verloren. Ein Tag oder mehrere am Stück, nur ab heute. Die andere Person stimmt einmal für den ganzen Zeitraum zu.</p>
+    <div class="row2"><div><label>Von</label><input id="pd" type="date" value="${today}" min="${today}"></div>
+    <div><label>Bis (für mehrere Tage)</label><input id="pd2" type="date" min="${today}"></div></div>
+    <button class="btn blue" id="addP">Pause beantragen</button><div style="height:6px"></div>
+    ${groupPauses(pauses).map(g => `<div class="line hrow"><span>${esc(rangeText(g.days))} ${g.approved ? '<span class="tag ok">ok</span>' : '<span class="tag wait">wartet</span>'}</span><button class="btn ghost small" data-dp="${esc(g.key)}">Löschen</button></div>`).join('')}
+    <h2>Benachrichtigungen</h2><div id="pushBox"><p class="muted">Prüfe …</p></div>
     <h2>Sonstiges</h2><p class="muted">Beweisfotos werden 3 Tage nach der Prüfung gelöscht. Zeit, Ort und Punkte bleiben.</p>
     <div style="height:12px"></div><button class="btn ghost" id="out">Abmelden</button>`;
   $app.innerHTML = html;
@@ -522,6 +683,7 @@ function renderMe() {
       weekdays: repeat === 'weekdays' ? weekdays : null,
       every_days: repeat === 'interval' ? every_days : null };
     const { error } = await sb.from('tasks').insert(row); if (error) return toast(errMsg(error));
+    notify(`Neue Challenge von ${S.me.name}`, `„${title}“ (${points} Diamanten) – passt das?`);
     toast('Vorgeschlagen – wartet auf OK'); await refresh();
   };
   $app.querySelectorAll('[data-at]').forEach(b => b.onclick = async () => {
@@ -529,13 +691,96 @@ function renderMe() {
     const { error } = await sb.rpc('archive_task', { p_id: b.dataset.at }); if (error) return toast(errMsg(error)); await refresh();
   });
   document.getElementById('addP').onclick = async () => {
-    const day = document.getElementById('pd').value; if (!day) return;
-    const { error } = await sb.from('pause_days').insert({ day, user_id: S.me.id }); if (error) return toast(error.code === '23505' ? 'Ist schon ein Pause-Tag' : errMsg(error)); toast('Wartet auf OK'); await refresh();
+    const from = document.getElementById('pd').value; const to = document.getElementById('pd2').value || from;
+    if (!from) return toast('Von wann?');
+    if (from < today) return toast('Pause-Tage nur ab heute');
+    if (to < from) return toast('„Bis“ liegt vor „Von“');
+    const n = diffDays(from, to) + 1;
+    if (n > 90) return toast('Höchstens 90 Tage am Stück');
+    const have = new Set(S.pauses.filter(p => p.user_id === S.me.id).map(p => p.day));
+    const days = []; for (let i = 0; i < n; i++) { const d = addDays(from, i); if (!have.has(d)) days.push(d); }
+    if (!days.length) return toast(n === 1 ? 'Ist schon ein Pause-Tag' : 'Sind schon alles Pause-Tage');
+    if (n > 1 && !confirm(`${rangeText(days)} als Pause beantragen?`)) return;
+    const group_id = crypto.randomUUID();
+    const rows = days.map(day => S.dbOld ? { day, user_id: S.me.id } : { day, user_id: S.me.id, group_id });
+    const { error } = await sb.from('pause_days').insert(rows);
+    if (error) return toast(error.code === '23505' ? 'Ist schon ein Pause-Tag' : errMsg(error));
+    notify(`${S.me.name} möchte Pause 🏖️`, `${rangeText(days)} – bitte bestätigen`);
+    toast('Wartet auf OK'); await refresh();
   };
   $app.querySelectorAll('[data-dp]').forEach(b => b.onclick = async () => {
-    const { error } = await sb.from('pause_days').delete().eq('user_id', S.me.id).eq('day', b.dataset.dp); if (error) return toast(errMsg(error)); await refresh();
+    const g = groupPauses(pauses).find(x => x.key === b.dataset.dp); if (!g) return;
+    if (g.days.length > 1 && !confirm(`Pause ${rangeText(g.days)} löschen?`)) return;
+    const { error } = await sb.from('pause_days').delete().eq('user_id', S.me.id).in('day', g.days); if (error) return toast(errMsg(error)); await refresh();
   });
-  document.getElementById('out').onclick = () => sb.auth.signOut();
+  document.getElementById('out').onclick = async () => { await pushOff(true); sb.auth.signOut(); };
+  renderPushBox();
+}
+
+// ---------- Push-Benachrichtigungen ----------
+const b64uToBytes = s => { const b = atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)); return Uint8Array.from(b, c => c.charCodeAt(0)); };
+const isIOS = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+const pushSupported = () => 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+let swReg = null;
+async function getReg() {
+  if (swReg) return swReg;
+  if (!('serviceWorker' in navigator)) return null;
+  try { swReg = await navigator.serviceWorker.register('sw.js'); return swReg; } catch (_) { return null; }
+}
+async function currentSub() { const r = await getReg(); return r && r.pushManager ? r.pushManager.getSubscription() : null; }
+async function saveSub(sub) {
+  const j = sub.toJSON();
+  const { error } = await sb.rpc('save_push_subscription', { p_endpoint: j.endpoint, p_p256dh: j.keys.p256dh, p_auth: j.keys.auth });
+  if (error) throw error;
+}
+async function pushOn() {
+  const perm = await Notification.requestPermission();
+  if (perm !== 'granted') throw new Error('Benachrichtigungen nicht erlaubt');
+  const reg = await getReg(); if (!reg) throw new Error('Service Worker fehlt');
+  await navigator.serviceWorker.ready;
+  let sub = await reg.pushManager.getSubscription();
+  if (!sub) sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64uToBytes(VAPID_PUBLIC_KEY) });
+  await saveSub(sub);
+}
+async function pushOff(quiet) {
+  try {
+    const sub = await currentSub(); if (!sub) return;
+    await sb.rpc('remove_push_subscription', { p_endpoint: sub.endpoint });
+    await sub.unsubscribe();
+  } catch (e) { if (!quiet) toast(errMsg(e)); }
+}
+async function renderPushBox() {
+  const box = document.getElementById('pushBox'); if (!box) return;
+  if (!pushSupported()) {
+    box.innerHTML = isIOS() && !isStandalone()
+      ? `<p class="muted">Auf dem iPhone gehen Benachrichtigungen nur in der App vom Home-Bildschirm: in Safari <b>Teilen → Zum Home-Bildschirm</b>, dann die App dort öffnen (iOS 16.4 oder neuer).</p>`
+      : `<p class="muted">Dieser Browser kann keine Push-Benachrichtigungen.</p>`;
+    return;
+  }
+  if (Notification.permission === 'denied') {
+    box.innerHTML = `<p class="muted">Benachrichtigungen sind blockiert. iPhone: <b>Einstellungen → Mitteilungen → Streako</b> → erlauben.</p>`; return;
+  }
+  const sub = await currentSub().catch(() => null);
+  if (sub && Notification.permission === 'granted') {
+    box.innerHTML = `<p style="margin-bottom:8px"><span class="tag ok">an</span> <span class="muted">auf diesem Gerät – du bekommst Bescheid, wenn ${esc(oName())} etwas einreicht oder entscheidet, und um 19 Uhr, falls noch etwas offen ist.</span></p>
+      <div class="row2"><button class="btn ghost small" id="pTest">Test senden</button><button class="btn ghost small" id="pOff">Ausschalten</button></div>`;
+    document.getElementById('pTest').onclick = async () => {
+      const { data, error } = await sb.functions.invoke('push', { body: { title: 'Streako', body: 'Test – Benachrichtigungen funktionieren 🔥', to: 'self' } });
+      if (error) return toast('Push-Server antwortet nicht – ist die Edge Function „push“ eingerichtet?');
+      toast(data && data.sent ? 'Gesendet – kommt gleich an' : 'Kein Gerät gefunden');
+    };
+    document.getElementById('pOff').onclick = async () => { await pushOff(); renderPushBox(); };
+  } else {
+    box.innerHTML = `<p class="muted" style="margin-bottom:8px">Bekomm Bescheid, wenn ${esc(oName())} etwas einreicht oder du prüfen musst – und abends, wenn dein Streak in Gefahr ist.</p>
+      <button class="btn blue" id="pOn"><i class="ti ti-bell"></i> Benachrichtigungen aktivieren</button>`;
+    const pOn = document.getElementById('pOn');
+    pOn.onclick = async () => {
+      pOn.disabled = true;
+      try { await pushOn(); toast('Benachrichtigungen sind an'); } catch (err) { toast(errMsg(err)); }
+      renderPushBox();
+    };
+  }
 }
 
 // ---------- Kamera-Beweis ----------
@@ -616,6 +861,7 @@ async function openCamera(task) {
       btn.disabled = false; btn.textContent = 'Beweis senden';
       return toast(error.code === '23505' ? 'Für heute schon eingereicht' : errMsg(error) + (/nicht dran/.test(errMsg(error)) ? ' (nach Mitternacht zählt der neue Tag)' : ''));
     }
+    notify(`${S.me.name} hat „${CAM.task.title}“ erledigt 📸`, 'Beweis wartet auf deine Prüfung');
     document.getElementById('after').outerHTML = `<div class="success"><i class="ti ti-confetti"></i> Stark! Eingereicht um ${tFmt.format(new Date(data.created_at))} Uhr</div>`;
     setTimeout(async () => { closeCamera(); await refresh(); }, 1600);
   };
@@ -643,8 +889,15 @@ sb.auth.onAuthStateChange((_ev, session) => {
   const changed = !started || (session && session.user.id) !== (S.session && S.session.user.id);
   started = true;
   S.session = session;
-  if (changed) { S.me = null; S.tab = 'home'; setTimeout(() => refresh().then(() => { if (S.me) cleanupPhotos(); }), 0); }
+  if (changed) { S.me = null; S.tab = 'home'; S.histN = 15; setTimeout(() => refresh().then(() => { if (S.me) { cleanupPhotos(); resyncPush(); } }), 0); }
 });
+// Vorhandenes Push-Abo diesem Account zuordnen (z. B. nach Account-Wechsel auf dem Gerät)
+async function resyncPush() {
+  try { if (pushSupported() && Notification.permission === 'granted') { const s = await currentSub(); if (s) await saveSub(s); } } catch (_) {}
+}
+getReg();
+// Kommt eine Push-Nachricht, während die App offen ist: gleich neu laden
+if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', e => { if (e.data === 'refresh' && autoOk()) refresh(); });
 // Automatisch neu laden – aber nicht, während jemand tippt oder ein Formular offen ist
 function autoOk() {
   const a = document.activeElement;
