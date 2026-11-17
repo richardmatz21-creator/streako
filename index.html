@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Streako">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#ffffff">
+<title>Streako</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" rel="stylesheet">
+<style>
+:root{
+  --green:#58B21C; --green-d:#438A14; --green-l:#E8F6DC;
+  --blue:#1CA0E3;  --blue-d:#1580B8;  --blue-l:#E2F4FD;
+  --amber:#FFB020; --amber-d:#D18A00; --amber-l:#FFF3D9;
+  --red:#F04A4A;   --red-d:#C23535;   --red-l:#FDE6E6;
+  --orange:#FF8A1F;
+  --gray:#E5E5E5;  --gray-d:#C7C7C7;  --muted:#8A8A8A;
+  --text:#3C3C3C;  --bg:#FFFFFF;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Nunito,system-ui,sans-serif;font-weight:600}
+body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+#app{max-width:480px;margin:0 auto;padding:calc(10px + env(safe-area-inset-top)) 16px 16px}
+h1,h2,h3{font-weight:900;margin:0}
+h2{font-size:20px;margin:20px 0 10px}
+p{margin:0}
+.muted{color:var(--muted);font-size:14px}
+.btn{display:block;width:100%;border:0;border-radius:16px;padding:14px;font:inherit;font-weight:900;font-size:15px;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;
+  background:var(--green);color:#fff;border-bottom:4px solid var(--green-d);transition:transform .05s}
+.btn:active{transform:translateY(3px);border-bottom-width:1px;margin-bottom:3px}
+.btn.blue{background:var(--blue);border-bottom-color:var(--blue-d)}
+.btn.red{background:var(--red);border-bottom-color:var(--red-d)}
+.btn.ghost{background:#fff;color:var(--blue);border:2px solid var(--gray);border-bottom-width:4px}
+.btn.small{display:inline-block;width:auto;padding:9px 14px;font-size:13px;border-radius:12px}
+.row2{display:flex;gap:10px}.row2>*{flex:1}
+.card{border:2px solid var(--gray);border-bottom-width:4px;border-radius:16px;padding:12px 14px;margin-bottom:10px}
+.card.hl{border-color:var(--amber);background:var(--amber-l)}
+.card .t{font-weight:900;font-size:16px}
+.line{display:flex;justify-content:space-between;align-items:center;gap:10px}
+input,select{width:100%;font:inherit;font-size:16px;padding:12px;border:2px solid var(--gray);border-radius:12px;background:#F7F7F7;color:var(--text);margin:4px 0 10px}
+label{font-size:14px;color:var(--muted)}
+.topbar{display:flex;justify-content:space-between;align-items:center;font-weight:900;font-size:18px;padding:4px 2px 12px}
+.topbar span{display:flex;align-items:center;gap:4px}
+.banner{background:var(--green);border-bottom:4px solid var(--green-d);color:#fff;border-radius:16px;padding:12px 16px;margin-bottom:8px}
+.banner.pause{background:var(--blue);border-bottom-color:var(--blue-d)}
+.banner small{display:block;opacity:.85;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.banner b{font-size:18px;font-weight:900}
+.path{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 0 8px}
+.node{width:76px;height:70px;border-radius:50%;border:0;display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff;cursor:pointer;
+  background:var(--gray);border-bottom:7px solid var(--gray-d)}
+.node:active{transform:translateY(4px);border-bottom-width:3px}
+.node.done{background:var(--green);border-bottom-color:var(--green-d)}
+.node.wait{background:var(--amber);border-bottom-color:var(--amber-d)}
+.node.open{background:var(--blue);border-bottom-color:var(--blue-d)}
+.node.next{background:var(--amber);border-bottom-color:var(--amber-d);outline:5px solid #FFD98A;outline-offset:4px}
+.node.bad{background:var(--red);border-bottom-color:var(--red-d)}
+.nlabel{font-weight:800;font-size:14px;text-align:center;margin-bottom:10px;max-width:220px}
+.nlabel small{display:block;color:var(--muted);font-weight:700}
+.nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:2px solid var(--gray);display:flex;justify-content:space-around;padding:8px 0 calc(8px + env(safe-area-inset-bottom));z-index:5}
+.nav button{background:none;border:2px solid transparent;border-radius:12px;padding:6px 14px;font-size:26px;color:var(--muted);position:relative;cursor:pointer}
+.nav button.on{color:var(--blue);border-color:var(--blue);background:var(--blue-l)}
+.nav .dot{position:absolute;top:0;right:2px;background:var(--red);color:#fff;font-size:11px;font-weight:900;border-radius:10px;padding:1px 6px}
+.rank{display:flex;align-items:center;gap:12px}
+.rank .pos{font-size:20px;font-weight:900;width:22px}
+.rank .nm{flex:1;font-weight:900;font-size:17px}
+.pill{display:inline-flex;align-items:center;gap:3px;font-weight:900;font-size:14px}
+.gem{color:var(--blue)}.fire{color:var(--orange)}.ice{color:#5BC0F0}
+.proofimg{width:100%;border-radius:12px;background:#222;min-height:120px;display:block;margin:8px 0;object-fit:cover;max-height:340px}
+.tag{display:inline-block;font-size:12px;font-weight:900;padding:3px 8px;border-radius:8px}
+.tag.ok{background:var(--green-l);color:var(--green-d)}.tag.wait{background:var(--amber-l);color:var(--amber-d)}.tag.no{background:var(--red-l);color:var(--red-d)}
+.big{font-size:40px;font-weight:900;text-align:center}
+.center{text-align:center}
+.empty{text-align:center;padding:24px 10px;color:var(--muted)}
+.wd{display:flex;gap:4px;margin:4px 0 10px}.wd label{flex:1}
+.wd input{display:none}.wd span{display:block;text-align:center;padding:9px 0;border:2px solid var(--gray);border-radius:10px;font-weight:900;color:var(--text)}
+.wd input:checked+span{background:var(--blue);border-color:var(--blue-d);color:#fff}
+.modal{position:fixed;inset:0;background:#fff;z-index:20;display:flex;flex-direction:column;padding:calc(10px + env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom));max-width:480px;margin:0 auto}
+.cam{position:relative;flex:1;background:#111;border-radius:18px;overflow:hidden;margin:10px 0;min-height:0}
+.cam video,.cam img{width:100%;height:100%;object-fit:cover;display:block}
+.cam .hud{position:absolute;left:10px;right:10px;top:10px;display:flex;justify-content:space-between;color:#fff;font-size:13px;font-weight:800}
+.cam .hud span{background:rgba(0,0,0,.55);padding:5px 9px;border-radius:10px}
+.shutter{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:72px;height:72px;border-radius:50%;border:6px solid #fff;background:rgba(255,255,255,.25);cursor:pointer}
+.success{background:var(--green-l);color:var(--green-d);border-radius:16px;padding:16px;font-weight:900;text-align:center;font-size:18px}
+.toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--text);color:#fff;padding:12px 18px;border-radius:14px;font-weight:800;z-index:30;max-width:90%;text-align:center}
+.hidden{display:none!important}
+a{color:var(--blue)}
+</style>
+</head>
+<body>
+<div id="app"><p class="center muted" style="padding-top:40vh">Lädt …</p></div>
+<nav class="nav hidden" id="nav">
+  <button data-tab="home" aria-label="Pfad"><i class="ti ti-home"></i></button>
+  <button data-tab="duel" aria-label="Duell"><i class="ti ti-trophy"></i><span class="dot hidden" id="duelDot"></span></button>
+  <button data-tab="shop" aria-label="Shop"><i class="ti ti-shopping-bag"></i></button>
+  <button data-tab="me" aria-label="Profil"><i class="ti ti-user"></i></button>
+</nav>
+<div id="modal" class="modal hidden"></div>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+// ===================== HIER EINTRAGEN =====================
+const SUPABASE_URL = 'https://tsrdcfafckyrisrvhzqh.supabase.co';        // z.B. https://abcdxyz.supabase.co
+const SUPABASE_ANON_KEY = 'sb_publishable_NCa-fVxzVZujbfeQhGZQDg_CuWdj20J'; // sb_publishable_… (oder alter anon-Key eyJ…) – NIE den Secret-/service_role-Key
+// ==========================================================
+
+const $app = document.getElementById('app');
+const $nav = document.getElementById('nav');
+const $modal = document.getElementById('modal');
+
+if (SUPABASE_URL.startsWith('HIER') || SUPABASE_ANON_KEY.startsWith('HIER')) {
+  $app.innerHTML = `<div class="card" style="margin-top:30px"><p class="t">Fast fertig</p><p class="muted" style="margin-top:6px">Trag oben in der Datei <b>index.html</b> deine Supabase-URL und den Publishable key ein (siehe Anleitung).</p></div>`;
+  throw new Error('Supabase nicht konfiguriert');
+}
+
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ---------- Helfer ----------
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dFmt = new Intl.DateTimeFormat('en-CA', {timeZone:'Europe/Berlin', year:'numeric', month:'2-digit', day:'2-digit'});
+const tFmt = new Intl.DateTimeFormat('de-DE', {timeZone:'Europe/Berlin', hour:'2-digit', minute:'2-digit', second:'2-digit'});
+const dtFmt = new Intl.DateTimeFormat('de-DE', {timeZone:'Europe/Berlin', weekday:'short', day:'2-digit', month:'2-digit'});
+const berlinDate = (d = new Date()) => dFmt.format(d);
+const parts = s => s.split('-').map(Number);
+const utc = s => { const [y,m,d] = parts(s); return Date.UTC(y, m-1, d); };
+const addDays = (s, n) => new Date(utc(s) + n*864e5).toISOString().slice(0,10);
+const diffDays = (a, b) => Math.round((utc(b) - utc(a)) / 864e5);
+const isoDow = s => { const w = new Date(utc(s)).getUTCDay(); return w === 0 ? 7 : w; };
+const weekStart = s => addDays(s, 1 - isoDow(s));
+const DAYS = ['Mo','Di','Mi','Do','Fr','Sa','So'];
+const DAYS_LONG = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'];
+const prettyDate = s => dtFmt.format(new Date(utc(s) + 12*36e5));
+
+function toast(msg) {
+  const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
+  document.body.appendChild(t); setTimeout(() => t.remove(), 3200);
+}
+function errMsg(e) { return (e && (e.message || e.error_description)) || 'Etwas ist schiefgelaufen'; }
+
+// ---------- Zustand ----------
+const S = { session:null, me:null, players:[], tasks:[], proofs:[], rewards:[], redemptions:[], pauses:[], tab:'home', urls:{} };
+const other = () => S.players.find(p => p.id !== S.me.id);
+const nameOf = id => (S.players.find(p => p.id === id) || {}).name || '?';
+
+// ---------- Logik ----------
+function dueOn(t, d) {
+  if (!t.approved || !t.approved_at) return false;
+  const from = t.start_date > berlinDate(new Date(t.approved_at)) ? t.start_date : berlinDate(new Date(t.approved_at));
+  if (d < from) return false;
+  if (t.archived_at && d >= berlinDate(new Date(t.archived_at))) return false;
+  switch (t.repeat) {
+    case 'daily': return true;
+    case 'weekdays': return (t.weekdays || []).includes(isoDow(d));
+    case 'once': return d === t.start_date;
+    case 'interval': return diffDays(t.start_date, d) % t.every_days === 0;
+  }
+  return false;
+}
+function proofFor(taskId, d) {
+  const list = S.proofs.filter(p => p.task_id === taskId && p.for_date === d);
+  return list.find(p => p.status === 'approved') || list.find(p => p.status === 'pending') || list.find(p => p.status === 'rejected') || null;
+}
+function dueTasks(uid, d) {
+  return S.tasks.filter(t => t.owner === uid && dueOn(t, d))
+    .sort((a,b) => (a.due_time || '99').localeCompare(b.due_time || '99'));
+}
+function dayDone(uid, d) {
+  const due = dueTasks(uid, d);
+  return due.length > 0 && due.every(t => { const p = proofFor(t.id, d); return p && p.status !== 'rejected'; });
+}
+function isPause(uid, d) { return S.pauses.some(p => p.user_id === uid && p.day === d && p.approved); }
+
+// Streak: Tage am Stück, an denen alles erledigt war. Tage ohne Aufgaben oder Pause-Tage zählen neutral.
+// Pro Woche (Mo–So) rettet ein Joker einen verpassten Tag.
+function streakOf(uid) {
+  const today = berlinDate();
+  const mine = S.tasks.filter(t => t.owner === uid && t.approved && t.approved_at);
+  if (!mine.length) return { count:0, jokerLeft:1 };
+  const earliest = mine.map(t => berlinDate(new Date(t.approved_at))).sort()[0];
+  const used = {};
+  let count = 0;
+  if (!isPause(uid, today) && dayDone(uid, today)) count++;
+  let d = addDays(today, -1);
+  for (let i = 0; i < 800 && d >= earliest; i++, d = addDays(d, -1)) {
+    if (isPause(uid, d) || dueTasks(uid, d).length === 0) continue;
+    if (dayDone(uid, d)) { count++; continue; }
+    const wk = weekStart(d);
+    if (!used[wk]) { used[wk] = true; continue; }
+    break;
+  }
+  return { count, jokerLeft: used[weekStart(today)] ? 0 : 1 };
+}
+function balanceOf(uid) {
+  const plus = S.proofs.filter(p => p.user_id === uid && p.status === 'approved').reduce((a,p) => a + p.points, 0);
+  const minus = S.redemptions.filter(r => r.user_id === uid).reduce((a,r) => a + r.cost, 0);
+  return plus - minus;
+}
+function weekPoints(uid) {
+  const ws = weekStart(berlinDate());
+  return S.proofs.filter(p => p.user_id === uid && p.status === 'approved' && p.for_date >= ws).reduce((a,p) => a + p.points, 0);
+}
+function repeatText(t) {
+  const time = t.due_time ? ` · ${t.due_time.slice(0,5)}` : '';
+  switch (t.repeat) {
+    case 'daily': return 'Jeden Tag' + time;
+    case 'weekdays': return (t.weekdays || []).slice().sort().map(n => DAYS[n-1]).join(', ') + time;
+    case 'once': return 'Nur am ' + prettyDate(t.start_date) + time;
+    case 'interval': return `Alle ${t.every_days} Tage ab ${prettyDate(t.start_date)}` + time;
+  }
+  return '';
+}
+function todoCount() {
+  const o = other(); if (!o) return 0;
+  return S.proofs.filter(p => p.user_id === o.id && p.status === 'pending').length
+    + S.tasks.filter(t => t.owner === o.id && !t.approved && !t.archived_at).length
+    + S.pauses.filter(p => p.user_id === o.id && !p.approved).length
+    + S.rewards.filter(r => r.owner === o.id && !r.approved).length
+    + S.redemptions.filter(r => r.user_id === o.id && !r.fulfilled).length;
+}
+
+// ---------- Daten ----------
+// Supabase liefert max. 1000 Zeilen pro Abfrage – daher seitenweise laden
+async function fetchAll(table, col, asc) {
+  const out = [];
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await sb.from(table).select('*').order(col, { ascending: asc }).order('id', { ascending: true }).range(from, from + 999);
+    if (error) throw error;
+    out.push(...data);
+    if (data.length < 1000) return out;
+  }
+}
+async function loadAll() {
+  const [players, tasks, proofs, rewards, redemptions, pauses] = await Promise.all([
+    sb.from('players').select('*').order('created_at'),
+    sb.from('tasks').select('*').order('created_at'),
+    fetchAll('proofs', 'created_at', false),
+    sb.from('rewards').select('*').order('cost'),
+    fetchAll('redemptions', 'created_at', false),
+    sb.from('pause_days').select('*').order('day'),
+  ]);
+  for (const r of [players, tasks, rewards, pauses]) if (r.error) throw r.error;
+  S.players = players.data; S.tasks = tasks.data; S.proofs = proofs; S.rewards = rewards.data; S.redemptions = redemptions; S.pauses = pauses.data;
+  S.me = S.players.find(p => p.id === S.session.user.id) || null;
+}
+
+async function cleanupPhotos() {
+  try {
+    const { data, error } = await sb.rpc('photos_due_for_deletion');
+    if (error || !data || !data.length) return;
+    const { error: e2 } = await sb.storage.from('proofs').remove(data.map(r => r.photo_path));
+    if (e2) return;
+    await sb.rpc('clear_photos', { p_ids: data.map(r => r.id) });
+  } catch (_) {}
+}
+
+async function photoUrl(path) {
+  if (!path) return null;
+  const c = S.urls[path];
+  if (c && c.until > Date.now()) return c.url;
+  const { data } = await sb.storage.from('proofs').createSignedUrl(path, 3600);
+  if (data) S.urls[path] = { url: data.signedUrl, until: Date.now() + 50 * 60000 };
+  return data ? data.signedUrl : null;
+}
+
+// ---------- Ansichten ----------
+function render() {
+  if (!S.session) return renderAuth();
+  if (!S.me) return renderJoin();
+  $nav.classList.remove('hidden');
+  $nav.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.tab === S.tab));
+  const n = todoCount(); const dot = document.getElementById('duelDot');
+  dot.textContent = n; dot.classList.toggle('hidden', n === 0);
+  ({ home:renderHome, duel:renderDuel, shop:renderShop, me:renderMe })[S.tab]();
+}
+
+function renderAuth() {
+  $nav.classList.add('hidden');
+  $app.innerHTML = `
+    <div style="padding-top:8vh" class="center"><i class="ti ti-flame fire" style="font-size:64px"></i>
+    <h1 style="font-size:30px;margin:6px 0 4px">Streako</h1><p class="muted">Zu zweit dranbleiben.</p></div>
+    <div style="margin-top:28px">
+      <label>E-Mail</label><input id="em" type="email" autocomplete="email">
+      <label>Passwort (mind. 8 Zeichen)</label><input id="pw" type="password" autocomplete="current-password">
+      <button class="btn" id="login">Einloggen</button>
+      <div style="height:10px"></div>
+      <button class="btn ghost" id="signup">Neu registrieren</button>
+    </div>`;
+  const creds = () => ({ email: document.getElementById('em').value.trim(), password: document.getElementById('pw').value });
+  document.getElementById('login').onclick = async () => {
+    const { error } = await sb.auth.signInWithPassword(creds()); if (error) toast(errMsg(error));
+  };
+  document.getElementById('signup').onclick = async () => {
+    const c = creds(); if (c.password.length < 8) return toast('Passwort: mindestens 8 Zeichen');
+    const { data, error } = await sb.auth.signUp({ ...c, options:{ emailRedirectTo: location.origin + location.pathname } });
+    if (error) return toast(errMsg(error));
+    if (!data.session) toast('Check deine E-Mails und bestätige den Link');
+  };
+}
+
+function renderJoin() {
+  $nav.classList.add('hidden');
+  $app.innerHTML = `
+    <h1 style="margin-top:8vh">Wie heißt du?</h1>
+    <p class="muted" style="margin:6px 0 16px">So sieht dich die andere Person im Duell.</p>
+    <input id="nm" maxlength="30" placeholder="Richard">
+    <button class="btn" id="go">Los geht's</button>
+    <div style="height:10px"></div><button class="btn ghost" id="out">Abmelden</button>`;
+  document.getElementById('go').onclick = async () => {
+    const { error } = await sb.rpc('join_game', { p_name: document.getElementById('nm').value });
+    if (error) return toast(errMsg(error));
+    await refresh();
+  };
+  document.getElementById('out').onclick = () => sb.auth.signOut();
+}
+
+function topbar() {
+  const st = streakOf(S.me.id);
+  return `<div class="topbar">
+    <span class="fire"><i class="ti ti-flame"></i>${st.count}</span>
+    <span class="gem"><i class="ti ti-diamond"></i>${balanceOf(S.me.id)}</span>
+    <span class="ice" title="Joker diese Woche"><i class="ti ti-snowflake"></i>${st.jokerLeft}</span>
+  </div>`;
+}
+
+function renderHome() {
+  const today = berlinDate();
+  const pause = isPause(S.me.id, today);
+  const due = dueTasks(S.me.id, today);
+  let nextSet = false;
+  const offs = [0, 70, 0, -70];
+  const nodes = due.map((t, i) => {
+    const p = proofFor(t.id, today);
+    let cls = 'open', icon = 'ti-camera', sub = `+${t.points}`;
+    if (p && p.status === 'approved') { cls = 'done'; icon = 'ti-check'; sub = `+${t.points} · bestätigt`; }
+    else if (p && p.status === 'pending') { cls = 'wait'; icon = 'ti-hourglass'; sub = 'wird geprüft'; }
+    else { if (p && p.status === 'rejected') sub = 'abgelehnt · nochmal'; if (!nextSet) { cls = 'next'; icon = 'ti-star'; nextSet = true; } }
+    const tappable = !(p && p.status !== 'rejected');
+    const time = t.due_time ? t.due_time.slice(0,5) + ' · ' : '';
+    const ml = offs[i % 4];
+    return `<button class="node ${cls}" style="margin-left:${ml}px" ${tappable ? `data-shoot="${t.id}"` : 'disabled'} aria-label="${esc(t.title)}"><i class="ti ${icon}"></i></button>
+      <div class="nlabel" style="margin-left:${ml}px">${esc(t.title)}<small>${esc(time + sub)}</small></div>`;
+  }).join('');
+  const weekday = DAYS_LONG[isoDow(today) - 1];
+  $app.innerHTML = topbar() + `
+    <div class="banner ${pause ? 'pause' : ''}"><small>${weekday}, ${prettyDate(today).split(', ')[1] || ''}</small><b>${pause ? 'Pause-Tag – Streak ist sicher' : (due.length ? (dayDone(S.me.id, today) ? 'Alles erledigt!' : 'Dein Tag') : 'Heute nichts dran')}</b></div>
+    ${due.length ? `<div class="path">${nodes}</div>` : `<div class="empty"><i class="ti ti-mood-smile" style="font-size:40px"></i><p style="margin-top:6px">Für heute ist nichts geplant.<br>Neue Challenges legst du im Profil an.</p></div>`}
+    ${upcoming()}`;
+  $app.querySelectorAll('[data-shoot]').forEach(b => b.onclick = () => openCamera(S.tasks.find(t => t.id === b.dataset.shoot)));
+}
+
+function upcoming() {
+  const today = berlinDate(); const out = [];
+  for (let i = 1; i <= 7; i++) {
+    const d = addDays(today, i);
+    dueTasks(S.me.id, d).forEach(t => out.push(`<div class="line" style="padding:6px 0;border-bottom:2px solid var(--gray)"><span>${esc(t.title)}</span><span class="muted">${prettyDate(d)}</span></div>`));
+  }
+  return out.length ? `<h2>Nächste 7 Tage</h2>${out.slice(0, 12).join('')}` : '';
+}
+
+function renderDuel() {
+  const o = other();
+  const ranking = S.players.map(p => ({ p, w: weekPoints(p.id), s: streakOf(p.id).count, b: balanceOf(p.id) })).sort((a,b) => b.w - a.w);
+  const ws = weekStart(berlinDate()); const left = 7 - diffDays(ws, berlinDate()) - 1;
+  let html = topbar() + `<h2 style="margin-top:4px">Duell diese Woche</h2><p class="muted" style="margin:-4px 0 10px">noch ${left} ${left === 1 ? 'Tag' : 'Tage'} · Mo–So</p>`;
+  html += ranking.map((r, i) => `<div class="card ${i === 0 && r.w > 0 ? 'hl' : ''}"><div class="rank"><span class="pos">${i + 1}</span><span class="nm">${esc(r.p.name)}${r.p.id === S.me.id ? ' (du)' : ''}</span>
+      <span class="pill"><i class="ti ti-diamond gem"></i>${r.w}</span></div>
+      <p class="muted" style="margin-top:4px"><span class="fire"><i class="ti ti-flame"></i></span> ${r.s} Tage · Kontostand ${r.b}</p></div>`).join('');
+  if (!o) {
+    html += `<div class="card"><p class="t">Warte auf Mitspieler</p><p class="muted">Schick den Link an deine Schwester. Sie registriert sich und ist dann automatisch dabei.</p></div>`;
+    $app.innerHTML = html; return;
+  }
+  const pend = S.proofs.filter(p => p.user_id === o.id && p.status === 'pending');
+  const tsk = S.tasks.filter(t => t.owner === o.id && !t.approved && !t.archived_at);
+  const pau = S.pauses.filter(p => p.user_id === o.id && !p.approved);
+  const rew = S.rewards.filter(r => r.owner === o.id && !r.approved);
+  const red = S.redemptions.filter(r => r.user_id === o.id && !r.fulfilled);
+  html += `<h2>Zu prüfen</h2>`;
+  if (!pend.length && !tsk.length && !rew.length && !red.length && !pau.length) html += `<div class="empty">Nichts zu prüfen.</div>`;
+  html += pend.map(p => {
+    const t = S.tasks.find(x => x.id === p.task_id) || {};
+    const map = `https://www.openstreetmap.org/?mlat=${p.lat}&mlon=${p.lng}#map=18/${p.lat}/${p.lng}`;
+    return `<div class="card"><div class="line"><span class="t">${esc(t.title)}</span><span class="pill gem"><i class="ti ti-diamond"></i>${p.points}</span></div>
+      <img class="proofimg" data-img="${esc(p.photo_path)}" alt="Beweisfoto">
+      <p class="muted"><i class="ti ti-clock"></i> ${tFmt.format(new Date(p.created_at))} Uhr (Server) · ${prettyDate(p.for_date)}</p>
+      ${t.due_time ? `<p style="margin:4px 0">Fällig ${t.due_time.slice(0,5)} · ${p.late ? '<span class="tag no">zu spät</span>' : '<span class="tag ok">pünktlich</span>'}</p>` : ''}
+      <p class="muted"><i class="ti ti-map-pin"></i> <a href="${map}" target="_blank" rel="noopener">Ort ansehen</a> · ±${Math.round(p.accuracy || 0)} m</p>
+      ${t.proof_hint ? `<p class="muted"><i class="ti ti-info-circle"></i> Beweis: ${esc(t.proof_hint)}</p>` : ''}
+      <div class="row2" style="margin-top:10px"><button class="btn red small" data-rp="${p.id}" data-ok="0">Ablehnen</button><button class="btn small" data-rp="${p.id}" data-ok="1">Bestätigen</button></div></div>`;
+  }).join('');
+  html += tsk.map(t => `<div class="card"><p class="muted">Neue Challenge von ${esc(o.name)}</p><div class="line"><span class="t">${esc(t.title)}</span><span class="pill gem"><i class="ti ti-diamond"></i>${t.points}</span></div>
+      <p class="muted">${esc(repeatText(t))}${t.proof_hint ? ' · Beweis: ' + esc(t.proof_hint) : ''}</p>
+      <div class="row2" style="margin-top:10px"><button class="btn red small" data-dt="${t.id}" data-ok="0">Ablehnen</button><button class="btn small" data-dt="${t.id}" data-ok="1">Passt</button></div></div>`).join('');
+  html += pau.map(p => `<div class="card"><p class="muted">${esc(o.name)} möchte einen Pause-Tag</p><span class="t">${prettyDate(p.day)}</span>
+      <div class="row2" style="margin-top:10px"><button class="btn red small" data-pu="${p.day}" data-ok="0">Nein</button><button class="btn small" data-pu="${p.day}" data-ok="1">Okay</button></div></div>`).join('');
+  html += rew.map(r => `<div class="card"><p class="muted">Neue Belohnung von ${esc(o.name)}</p><div class="line"><span class="t">${esc(r.title)}</span><span class="pill gem"><i class="ti ti-diamond"></i>${r.cost}</span></div>
+      <div class="row2" style="margin-top:10px"><button class="btn red small" data-dr="${r.id}" data-ok="0">Zu billig</button><button class="btn small" data-dr="${r.id}" data-ok="1">Preis passt</button></div></div>`).join('');
+  html += red.map(r => `<div class="card hl"><p class="muted">${esc(o.name)} hat eingelöst</p><div class="line"><span class="t">${esc(r.title)}</span><span class="pill gem"><i class="ti ti-diamond"></i>${r.cost}</span></div>
+      <button class="btn small" style="margin-top:10px" data-fr="${r.id}">Erledigt</button></div>`).join('');
+  const hist = S.proofs.slice(0, 15).map(p => {
+    const t = S.tasks.find(x => x.id === p.task_id) || {};
+    const lateTag = p.late ? '<span class="tag no" style="margin-right:4px">zu spät</span>' : '';
+    const tag = lateTag + (p.status === 'approved' ? '<span class="tag ok">bestätigt</span>' : p.status === 'pending' ? '<span class="tag wait">offen</span>' : '<span class="tag no">abgelehnt</span>');
+    return `<div class="line" style="padding:7px 0;border-bottom:2px solid var(--gray)"><span>${esc(nameOf(p.user_id))}: ${esc(t.title)}<br><span class="muted">${prettyDate(p.for_date)}, ${tFmt.format(new Date(p.created_at)).slice(0,5)}</span></span>${tag}</div>`;
+  }).join('');
+  if (hist) html += `<h2>Verlauf</h2>${hist}`;
+  $app.innerHTML = html;
+  $app.querySelectorAll('[data-img]').forEach(async img => { const u = await photoUrl(img.dataset.img); if (u) img.src = u; else img.alt = 'Foto schon gelöscht'; });
+  const act = (sel, fn, key) => $app.querySelectorAll(sel).forEach(b => b.onclick = async () => {
+    b.disabled = true;
+    const { error } = await sb.rpc(fn, { [key]: b.dataset[Object.keys(b.dataset)[0]], ...(b.dataset.ok !== undefined ? { p_ok: b.dataset.ok === '1' } : {}) });
+    if (error) { b.disabled = false; return toast(errMsg(error)); }
+    await refresh();
+  });
+  act('[data-rp]', 'review_proof', 'p_id');
+  act('[data-dt]', 'decide_task', 'p_id');
+  act('[data-dr]', 'decide_reward', 'p_id');
+  act('[data-fr]', 'fulfill_redemption', 'p_id');
+  $app.querySelectorAll('[data-pu]').forEach(b => b.onclick = async () => {
+    b.disabled = true;
+    const { error } = await sb.rpc('decide_pause', { p_user: o.id, p_day: b.dataset.pu, p_ok: b.dataset.ok === '1' });
+    if (error) { b.disabled = false; return toast(errMsg(error)); }
+    await refresh();
+  });
+}
+
+function renderShop() {
+  const bal = balanceOf(S.me.id);
+  const mine = S.rewards.filter(r => r.owner === S.me.id && !r.archived_at);
+  let html = topbar() + `<div class="center" style="margin:6px 0 14px"><p class="muted">Dein Kontostand</p><p class="big gem"><i class="ti ti-diamond"></i> ${bal}</p></div><h2>Deine Belohnungen</h2>`;
+  if (!mine.length) html += `<div class="empty">Leg unten an, wofür du Punkte sammeln willst.</div>`;
+  html += mine.map(r => {
+    const pct = Math.min(100, Math.round(bal / r.cost * 100));
+    return `<div class="card"><div class="line"><span class="t">${esc(r.title)}</span><span class="pill gem"><i class="ti ti-diamond"></i>${r.cost}</span></div>
+      ${r.approved ? `<div style="background:var(--gray);border-radius:8px;height:12px;margin:10px 0"><div style="width:${pct}%;height:12px;border-radius:8px;background:var(--amber)"></div></div>
+        <div class="row2"><button class="btn ghost small" data-ar="${r.id}">Entfernen</button><button class="btn ${bal >= r.cost ? '' : 'blue'} small" data-rd="${r.id}">${bal >= r.cost ? 'Einlösen' : `noch ${r.cost - bal}`}</button></div>`
+      : `<p style="margin-top:6px"><span class="tag wait">wartet auf Preis-OK</span></p>`}</div>`;
+  }).join('');
+  html += `<h2>Neue Belohnung</h2>
+    <label>Was willst du?</label><input id="rt" maxlength="60" placeholder="Kino, Pizza aussuchen, …">
+    <label>Preis in Punkten</label><input id="rc" type="number" min="1" max="100000" inputmode="numeric" placeholder="300">
+    <button class="btn blue" id="addR">Vorschlagen</button>
+    <p class="muted" style="margin-top:8px">Die andere Person bestätigt den Preis.</p>`;
+  const myRed = S.redemptions.filter(r => r.user_id === S.me.id);
+  if (myRed.length) html += `<h2>Eingelöst</h2>` + myRed.map(r => `<div class="line" style="padding:7px 0;border-bottom:2px solid var(--gray)"><span>${esc(r.title)} <span class="muted">(${r.cost})</span></span>${r.fulfilled ? '<span class="tag ok">erledigt</span>' : '<span class="tag wait">offen</span>'}</div>`).join('');
+  $app.innerHTML = html;
+  $app.querySelectorAll('[data-rd]').forEach(b => b.onclick = async () => {
+    const r = S.rewards.find(x => x.id === b.dataset.rd);
+    if (balanceOf(S.me.id) < r.cost) return toast(`Dir fehlen noch ${r.cost - balanceOf(S.me.id)} Punkte`);
+    if (!confirm(`„${r.title}“ für ${r.cost} Punkte einlösen?`)) return;
+    const { error } = await sb.rpc('redeem', { p_reward: r.id }); if (error) return toast(errMsg(error));
+    toast('Eingelöst! Die andere Person sieht es im Duell.'); await refresh();
+  });
+  $app.querySelectorAll('[data-ar]').forEach(b => b.onclick = async () => {
+    const { error } = await sb.rpc('archive_reward', { p_id: b.dataset.ar }); if (error) return toast(errMsg(error)); await refresh();
+  });
+  document.getElementById('addR').onclick = async () => {
+    const title = document.getElementById('rt').value.trim(); const cost = parseInt(document.getElementById('rc').value, 10);
+    if (!title) return toast('Wie heißt die Belohnung?');
+    if (!(cost >= 1 && cost <= 100000)) return toast('Preis zwischen 1 und 100000');
+    const { error } = await sb.from('rewards').insert({ title, cost, owner: S.me.id }); if (error) return toast(errMsg(error));
+    toast('Vorgeschlagen'); await refresh();
+  };
+}
+
+function renderMe() {
+  const today = berlinDate();
+  const mine = S.tasks.filter(t => t.owner === S.me.id && !t.archived_at);
+  const pauses = S.pauses.filter(p => p.user_id === S.me.id && p.day >= today);
+  let html = topbar() + `<h2 style="margin-top:4px">${esc(S.me.name)}</h2><h2>Deine Challenges</h2>`;
+  if (!mine.length) html += `<div class="empty">Noch keine Challenges.</div>`;
+  html += mine.map(t => `<div class="card"><div class="line"><span class="t">${esc(t.title)}</span><span class="pill gem"><i class="ti ti-diamond"></i>${t.points}</span></div>
+      <p class="muted">${esc(repeatText(t))}</p>${t.proof_hint ? `<p class="muted">Beweis: ${esc(t.proof_hint)}</p>` : ''}
+      <div class="line" style="margin-top:8px">${t.approved ? '<span class="tag ok">aktiv</span>' : '<span class="tag wait">wartet auf OK</span>'}<button class="btn ghost small" data-at="${t.id}">Beenden</button></div></div>`).join('');
+  html += `<h2>Neue Challenge</h2>
+    <label>Was?</label><input id="tt" maxlength="60" placeholder="Pünktlich in der Schule">
+    <div class="row2"><div><label>Punkte</label><input id="tp" type="number" min="1" max="100" value="5" inputmode="numeric"></div>
+    <div><label>Uhrzeit (optional)</label><input id="tz" type="time"></div></div>
+    <label>Was zählt als Beweis?</label><input id="th" maxlength="120" placeholder="Foto im Klassenraum">
+    <label>Wie oft?</label>
+    <select id="tr"><option value="daily">Jeden Tag</option><option value="weekdays" selected>Bestimmte Wochentage</option><option value="once">Nur an einem Datum</option><option value="interval">Alle X Tage (z.B. alle 2 Wochen = 14)</option></select>
+    <div id="wdBox" class="wd">${DAYS.map((d, i) => `<label><input type="checkbox" value="${i + 1}" ${i < 5 ? 'checked' : ''}><span>${d}</span></label>`).join('')}</div>
+    <div id="dBox"><label id="dLabel">Ab wann?</label><input id="td" type="date" value="${today}" min="${today}"></div>
+    <div id="iBox" class="hidden"><label>Alle wie viele Tage?</label><input id="ti" type="number" min="1" max="365" value="14" inputmode="numeric"></div>
+    <button class="btn blue" id="addT">Vorschlagen</button>
+    <p class="muted" style="margin-top:8px">Die andere Person bestätigt neue Challenges, damit keiner sich Punkte schenkt.</p>
+    <h2>Pause-Tage</h2><p class="muted" style="margin-bottom:6px">Ferien, krank – der Streak geht nicht verloren. Nur für heute oder später, die andere Person muss zustimmen.</p>
+    <div class="row2"><input id="pd" type="date" value="${today}" min="${today}"><button class="btn blue small" style="margin:4px 0 10px" id="addP">Hinzufügen</button></div>
+    ${pauses.map(p => `<div class="line" style="padding:7px 0;border-bottom:2px solid var(--gray)"><span>${prettyDate(p.day)} ${p.approved ? '<span class="tag ok">ok</span>' : '<span class="tag wait">wartet</span>'}</span><button class="btn ghost small" data-dp="${p.day}">Löschen</button></div>`).join('')}
+    <h2>Sonstiges</h2><p class="muted">Beweisfotos werden 3 Tage nach der Prüfung gelöscht. Zeit, Ort und Punkte bleiben.</p>
+    <div style="height:12px"></div><button class="btn ghost" id="out">Abmelden</button>`;
+  $app.innerHTML = html;
+  const tr = document.getElementById('tr');
+  const sync = () => {
+    const v = tr.value;
+    document.getElementById('wdBox').classList.toggle('hidden', v !== 'weekdays');
+    document.getElementById('iBox').classList.toggle('hidden', v !== 'interval');
+    document.getElementById('dLabel').textContent = v === 'once' ? 'An welchem Tag?' : 'Ab wann?';
+  };
+  tr.onchange = sync; sync();
+  document.getElementById('addT').onclick = async () => {
+    const title = document.getElementById('tt').value.trim();
+    const points = parseInt(document.getElementById('tp').value, 10);
+    const repeat = tr.value;
+    const weekdays = [...document.querySelectorAll('#wdBox input:checked')].map(i => +i.value);
+    const start_date = document.getElementById('td').value || today;
+    const every_days = parseInt(document.getElementById('ti').value, 10);
+    const due_time = document.getElementById('tz').value || null;
+    if (!title) return toast('Wie heißt die Challenge?');
+    if (!(points >= 1 && points <= 100)) return toast('Punkte zwischen 1 und 100');
+    if (repeat === 'weekdays' && !weekdays.length) return toast('Mindestens einen Wochentag wählen');
+    if (repeat === 'interval' && !(every_days >= 1 && every_days <= 365)) return toast('Abstand zwischen 1 und 365 Tagen');
+    if (start_date < today) return toast('Datum liegt in der Vergangenheit');
+    const row = { title, points, repeat, start_date, due_time, owner: S.me.id,
+      proof_hint: document.getElementById('th').value.trim() || null,
+      weekdays: repeat === 'weekdays' ? weekdays : null,
+      every_days: repeat === 'interval' ? every_days : null };
+    const { error } = await sb.from('tasks').insert(row); if (error) return toast(errMsg(error));
+    toast('Vorgeschlagen – wartet auf OK'); await refresh();
+  };
+  $app.querySelectorAll('[data-at]').forEach(b => b.onclick = async () => {
+    if (!confirm('Challenge beenden?')) return;
+    const { error } = await sb.rpc('archive_task', { p_id: b.dataset.at }); if (error) return toast(errMsg(error)); await refresh();
+  });
+  document.getElementById('addP').onclick = async () => {
+    const day = document.getElementById('pd').value; if (!day) return;
+    const { error } = await sb.from('pause_days').insert({ day, user_id: S.me.id }); if (error) return toast(error.code === '23505' ? 'Ist schon ein Pause-Tag' : errMsg(error)); toast('Wartet auf OK'); await refresh();
+  };
+  $app.querySelectorAll('[data-dp]').forEach(b => b.onclick = async () => {
+    const { error } = await sb.from('pause_days').delete().eq('user_id', S.me.id).eq('day', b.dataset.dp); if (error) return toast(errMsg(error)); await refresh();
+  });
+  document.getElementById('out').onclick = () => sb.auth.signOut();
+}
+
+// ---------- Kamera-Beweis ----------
+const CAM = { stream:null, watch:null, pos:null, blob:null, task:null };
+function closeCamera() {
+  if (CAM.stream) CAM.stream.getTracks().forEach(t => t.stop());
+  if (CAM.watch !== null) navigator.geolocation.clearWatch(CAM.watch);
+  Object.assign(CAM, { stream:null, watch:null, pos:null, blob:null, task:null });
+  $modal.classList.add('hidden'); $modal.innerHTML = '';
+}
+function gpsText() {
+  if (!CAM.pos) return '<i class="ti ti-map-pin"></i> GPS sucht …';
+  return `<i class="ti ti-map-pin"></i> GPS ±${Math.round(CAM.pos.accuracy)} m`;
+}
+async function openCamera(task) {
+  CAM.task = task;
+  $modal.classList.remove('hidden');
+  $modal.innerHTML = `
+    <div class="line"><button class="btn ghost small" id="cx" aria-label="Schließen"><i class="ti ti-x"></i></button><b style="font-size:17px">${esc(task.title)}</b><span class="pill gem"><i class="ti ti-diamond"></i>+${task.points}</span></div>
+    ${task.proof_hint ? `<p class="muted center" style="margin-top:6px">Beweis: ${esc(task.proof_hint)}</p>` : ''}
+    <div class="cam" id="cam">
+      <video id="vid" playsinline muted autoplay></video>
+      <img id="prev" class="hidden" alt="Vorschau">
+      <div class="hud"><span><i class="ti ti-clock"></i> Zeit setzt der Server</span><span id="gps">${gpsText()}</span></div>
+      <button class="shutter" id="shot" aria-label="Foto aufnehmen"></button>
+    </div>
+    <p class="muted center" style="margin-bottom:10px">Nur Live-Kamera – kein Upload aus der Galerie.</p>
+    <div id="after" class="row2 hidden"><button class="btn ghost" id="again">Nochmal</button><button class="btn" id="send">Beweis senden</button></div>`;
+  document.getElementById('cx').onclick = closeCamera;
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { toast('Kamera wird hier nicht unterstützt (HTTPS nötig)'); return; }
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:{ ideal:'environment' }, width:{ ideal:1280 } }, audio:false });
+    if (CAM.task !== task) { stream.getTracks().forEach(t => t.stop()); return; }
+    CAM.stream = stream;
+    const v = document.getElementById('vid'); v.srcObject = CAM.stream; await v.play().catch(() => {});
+  } catch (e) { toast('Kamera nicht erlaubt – in den Einstellungen freigeben'); return; }
+  if ('geolocation' in navigator) {
+    CAM.watch = navigator.geolocation.watchPosition(
+      pos => { CAM.pos = pos.coords; const g = document.getElementById('gps'); if (g) g.innerHTML = gpsText(); },
+      () => { const g = document.getElementById('gps'); if (g) g.innerHTML = '<i class="ti ti-map-pin-off"></i> Standort aus'; },
+      { enableHighAccuracy:true, maximumAge:0, timeout:30000 });
+  }
+  document.getElementById('shot').onclick = () => {
+    const v = document.getElementById('vid');
+    if (!v.videoWidth) return toast('Kamera startet noch …');
+    const scale = Math.min(1, 1280 / Math.max(v.videoWidth, v.videoHeight));
+    const c = document.createElement('canvas'); c.width = Math.round(v.videoWidth * scale); c.height = Math.round(v.videoHeight * scale);
+    c.getContext('2d').drawImage(v, 0, 0, c.width, c.height);
+    c.toBlob(b => {
+      if (!b) return toast('Foto ging nicht – nochmal');
+      CAM.blob = b;
+      const img = document.getElementById('prev'); img.src = URL.createObjectURL(b);
+      img.classList.remove('hidden'); v.classList.add('hidden');
+      document.getElementById('shot').classList.add('hidden'); document.getElementById('after').classList.remove('hidden');
+    }, 'image/jpeg', 0.75);
+  };
+  document.getElementById('again').onclick = () => {
+    CAM.blob = null;
+    document.getElementById('prev').classList.add('hidden'); document.getElementById('vid').classList.remove('hidden');
+    document.getElementById('shot').classList.remove('hidden'); document.getElementById('after').classList.add('hidden');
+  };
+  document.getElementById('send').onclick = async () => {
+    const btn = document.getElementById('send');
+    if (!CAM.blob) return;
+    if (!CAM.pos) return toast('Warte kurz, bis GPS da ist (Standort muss erlaubt sein)');
+    if (CAM.pos.accuracy > 150) return toast(`GPS noch ungenau (±${Math.round(CAM.pos.accuracy)} m) – kurz warten oder nach draußen/ans Fenster`);
+    btn.disabled = true; btn.textContent = 'Sendet …';
+    const path = `${S.me.id}/${crypto.randomUUID()}.jpg`;
+    const up = await sb.storage.from('proofs').upload(path, CAM.blob, { contentType:'image/jpeg', upsert:false });
+    if (up.error) { btn.disabled = false; btn.textContent = 'Beweis senden'; return toast(errMsg(up.error)); }
+    const { data, error } = await sb.from('proofs').insert({
+      task_id: CAM.task.id, photo_path: path, user_id: S.me.id,
+      lat: CAM.pos.latitude, lng: CAM.pos.longitude, accuracy: CAM.pos.accuracy,
+      for_date: berlinDate(), points: CAM.task.points,
+    }).select().single();
+    if (error) {
+      await sb.storage.from('proofs').remove([path]);
+      btn.disabled = false; btn.textContent = 'Beweis senden';
+      return toast(error.code === '23505' ? 'Für heute schon eingereicht' : errMsg(error) + (/nicht dran/.test(errMsg(error)) ? ' (nach Mitternacht zählt der neue Tag)' : ''));
+    }
+    document.getElementById('after').outerHTML = `<div class="success"><i class="ti ti-confetti"></i> Stark! Eingereicht um ${tFmt.format(new Date(data.created_at))} Uhr</div>`;
+    setTimeout(async () => { closeCamera(); await refresh(); }, 1600);
+  };
+}
+
+// ---------- Start ----------
+let busy = false, again = false;
+async function refresh() {
+  if (busy) { again = true; return; }
+  busy = true;
+  try { if (S.session) await loadAll(); render(); }
+  catch (e) {
+    $nav.classList.add('hidden');
+    $app.innerHTML = `<div class="card" style="margin-top:30px"><p class="t">Laden hat nicht geklappt</p><p class="muted" style="margin:6px 0 12px">${esc(errMsg(e))}</p>
+      <button class="btn" id="retry">Nochmal</button><div style="height:10px"></div><button class="btn ghost" id="eout">Abmelden</button></div>`;
+    document.getElementById('retry').onclick = () => refresh();
+    document.getElementById('eout').onclick = () => sb.auth.signOut();
+  }
+  finally { busy = false; if (again) { again = false; await refresh(); } }
+}
+$nav.querySelectorAll('button').forEach(b => b.onclick = () => { S.tab = b.dataset.tab; window.scrollTo(0, 0); render(); if (S.tab === 'home' || S.tab === 'duel') refresh(); });
+
+let started = false;
+sb.auth.onAuthStateChange((_ev, session) => {
+  const changed = !started || (session && session.user.id) !== (S.session && S.session.user.id);
+  started = true;
+  S.session = session;
+  if (changed) { S.me = null; S.tab = 'home'; setTimeout(() => refresh().then(() => { if (S.me) cleanupPhotos(); }), 0); }
+});
+// Automatisch neu laden – aber nicht, während jemand tippt oder ein Formular offen ist
+function autoOk() {
+  const a = document.activeElement;
+  return document.visibilityState === 'visible' && $modal.classList.contains('hidden') && S.me
+    && !(a && /^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName)) && (S.tab === 'home' || S.tab === 'duel');
+}
+setInterval(() => { if (autoOk()) refresh(); }, 30000);
+document.addEventListener('visibilitychange', () => { if (autoOk()) refresh(); });
+</script>
+</body>
+</html>
